@@ -1,0 +1,16 @@
+{
+  "name": "dsh-studio-engineering",
+  "version": "0.1.0",
+  "description": "代码知识图谱 · 工程方法技能 · 需求迭代方案",
+  "entry": {
+    "name": "dsh-studio-engineering",
+    "inject": [
+      "studioProjects",
+      "tools",
+      "systemPrompt"
+    ]
+  },
+  "client": {
+    "platform": "web"
+  }
+}

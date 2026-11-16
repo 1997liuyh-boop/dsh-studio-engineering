@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "engineering",
+  "name": "研发工作室",
+  "icon": "◈",
+  "description": "代码知识图谱 · 工程方法技能 · 需求迭代方案",
+  "order": 18,
+  "entry": "/studio-projects/engineering",
+  "capabilities": [
+    "code-graph",
+    "impact-analysis",
+    "iteration-plan",
+    "bundled-skills",
+    "dsh-session"
+  ],
+  "compatibility": {
+    "host": "0.2.1-rc.2",
+    "runtime": "^0.5.0",
+    "worktable": "^0.6.0"
+  },
+  "tasks": [
+    {
+      "id": "graph",
+      "label": "建立知识图谱",
+      "description": "解析项目代码，生成符号与依赖关系图谱",
+      "text": "【任务类型：建立知识图谱】调用 eng_workspace（task=graph），按返回的内置流程执行。为当前项目建立或刷新代码知识图谱，并说明图谱概况。"
+    },
+    {
+      "id": "analyze",
+      "label": "分析需求文档",
+      "description": "读需求，产出功能点、步骤、影响范围与接口设计",
+      "text": "【任务类型：分析需求文档】调用 eng_workspace（task=analyze），按返回的内置流程执行。读取下面给出的需求文档或需求描述，产出迭代方案：功能点、迭代步骤、影响范围、参数与方法设计。"
+    },
+    {
+      "id": "impact",
+      "label": "影响分析",
+      "description": "查看改动某个符号或当前改动会波及哪里",
+      "text": "【任务类型：影响分析】调用 eng_workspace（task=impact），按返回的内置流程执行。分析下面指定的符号、文件或当前改动会影响哪些地方。"
+    },
+    {
+      "id": "implement",
+      "label": "按方案实现",
+      "description": "按迭代方案逐步实现并核对",
+      "text": "【任务类型：按方案实现】调用 eng_workspace（task=implement），按返回的内置流程执行。按 docs/iterations 下的迭代方案逐步实现并验证。"
+    },
+    {
+      "id": "review",
+      "label": "评审改动",
+      "description": "对照需求与图谱评审改动",
+      "text": "【任务类型：评审改动】调用 eng_workspace（task=review），按返回的内置流程执行。评审当前工作区或指定分支的代码改动。"
+    }
+  ]
+}

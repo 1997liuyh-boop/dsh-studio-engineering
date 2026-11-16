@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "dsh-studio-engineering",
+  "version": "0.1.0",
+  "kind": "studio",
+  "packages": [
+    {
+      "id": "engineering",
+      "path": "studios/engineering"
+    }
+  ]
+}

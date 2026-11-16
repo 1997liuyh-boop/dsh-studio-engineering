@@ -1,0 +1,6 @@
+{
+  "kind": "original-integration",
+  "host": { "repository": "https://github.com/1997liuyh-boop/deepseek-harness", "forkedFrom": "https://github.com/deepseek-ai/deepseek-harness", "compatibility": "0.2.1-rc.2 experimental" },
+  "studioSdk": { "repository": "https://github.com/1997liuyh-boop/dsh-studio-library", "commit": "9e261bb1e73bcc51c35112aa8e5fd2e35e7704dd", "originalReference": "https://github.com/Aisland-SJL/dsh-worktable" },
+  "parser": { "package": "web-tree-sitter@0.27.2", "grammars": ["tree-sitter-typescript@0.23.2", "tree-sitter-javascript@0.25.0"], "license": "MIT", "vendored": "lib/wasm" }
+}

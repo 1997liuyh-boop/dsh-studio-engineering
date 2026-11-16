@@ -1,0 +1,71 @@
+{
+  "name": "dsh-studio-engineering",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "代码知识图谱、工程方法技能与需求迭代方案工作室",
+  "engines": {
+    "node": ">=22.19",
+    "dsh": "0.2.1-rc.2 || >=0.2.2-rc.1 <0.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1997liuyh-boop/dsh-studio-engineering.git",
+    "directory": "studios/engineering"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "static",
+    "skills",
+    "studio.json",
+    "dsh.plugin.json",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    },
+    "compatibility": {
+      "dsh": "0.2.1-rc.2",
+      "dshReleases": {
+        "0.2.1-rc.2": "experimental"
+      }
+    }
+  },
+  "peerDependencies": {
+    "dsh-studio-projects": "^0.5.0",
+    "dsh-worktable": "^0.6.0"
+  },
+  "peerDependenciesMeta": {
+    "dsh-studio-projects": {
+      "optional": true
+    },
+    "dsh-worktable": {
+      "optional": true
+    }
+  },
+  "homepage": "https://github.com/1997liuyh-boop/dsh-studio-engineering#readme",
+  "bugs": {
+    "url": "https://github.com/1997liuyh-boop/dsh-studio-engineering/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "studio"
+  ]
+}
