@@ -1,19 +1,31 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
-import { call, type ClusterDetail, type FlowDetail, type FlowStepView, type TraceView, type ViewsPayload } from './api.ts'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { call, type ArchiveResult, type ClusterDetail, type FlowDetail, type FlowStepView, type HealthReport, type TraceView, type ViewsPayload } from './api.ts'
 import ClusterMap from './ClusterMap.vue'
+import HealthPanel from './HealthPanel.vue'
+import { RequestGate } from './request-state.ts'
 
-/** 全局视图：架构图、执行流程、路由表、循环依赖与路径追踪。 */
+/**
+ * 全局视图：先回答「这个项目怎么样」——体检总览、质量、依赖、迭代情况与改动难度，
+ * 再往下是结构层面的架构图、执行流程、路由表、循环依赖与路径追踪。
+ */
 interface Props {
   /** 已建过图谱的项目根目录 */
   root: string
+  mode: 'health' | 'structure'
 }
 const props = defineProps<Props>()
 
-type Section = 'map' | 'flows' | 'routes' | 'cycles' | 'trace'
+type HealthSection = 'summary' | 'quality' | 'dependencies' | 'iteration' | 'difficulty'
+type Section = HealthSection | 'map' | 'flows' | 'routes' | 'cycles' | 'trace'
+const healthSections: { id: HealthSection; label: string }[] = [{ id: 'summary', label: '总览' }, { id: 'quality', label: '质量' }, { id: 'dependencies', label: '依赖' }, { id: 'iteration', label: '迭代' }, { id: 'difficulty', label: '难度' }]
 const sections: { id: Section; label: string }[] = [{ id: 'map', label: '架构图' }, { id: 'flows', label: '执行流程' }, { id: 'routes', label: '路由' }, { id: 'cycles', label: '循环依赖' }, { id: 'trace', label: '路径追踪' }]
-const section = ref<Section>('map')
+const isHealth = (id: Section): id is HealthSection => healthSections.some(item => item.id === id)
+const section = ref<Section>(props.mode === 'health' ? 'summary' : 'map')
 const views = ref<ViewsPayload | null>(null)
+/** 项目体检报告；与结构视图分开加载，读提交历史较慢时不挡住其余页面 */
+const health = ref<HealthReport | null>(null)
+const archive = ref<ArchiveResult | null>(null)
 const error = ref('')
 const loading = ref('')
 
@@ -27,18 +39,31 @@ const traceFrom = ref('')
 const traceTo = ref('')
 const traced = ref<TraceView | null>(null)
 
-/** 统一处理加载状态与报错。 */
-async function run<T>(label: string, task: () => Promise<T>): Promise<T | undefined> {
+const gate = new RequestGate()
+onBeforeUnmount(() => gate.cancel())
+/** 新操作使旧读取失效；卸载后不再把结果写回界面。 */
+async function run<T>(label: string, task: (signal: AbortSignal) => Promise<T>): Promise<T | undefined> {
+  const ticket = gate.begin()
   loading.value = label; error.value = ''
-  try { return await task() }
-  catch (cause) { error.value = cause instanceof Error ? cause.message : '操作失败'; return undefined }
-  finally { if (loading.value === label) loading.value = '' }
+  try { const value = await task(ticket.signal); return ticket.current() ? value : undefined }
+  catch (cause) { if (ticket.current()) error.value = cause instanceof Error ? cause.message : '操作失败'; return undefined }
+  finally { if (ticket.current()) loading.value = '' }
+}
+async function load() {
+  views.value = null; health.value = null; archive.value = null; cluster.value = null; flow.value = null; traced.value = null; selectedCluster.value = ''
+  if (props.mode === 'health') {
+    const value = await run('读取项目体检', signal => call({ action: 'health', root: props.root }, signal))
+    if (value) health.value = value
+  } else {
+    const value = await run('读取代码结构', signal => call({ action: 'views', root: props.root }, signal))
+    if (value) views.value = value
+  }
 }
 
-async function load() {
-  views.value = null; cluster.value = null; flow.value = null; traced.value = null; selectedCluster.value = ''
-  const value = await run('计算全局视图', () => call<ViewsPayload>({ action: 'views', root: props.root }))
-  if (value) views.value = value
+/** 把体检结果写成项目档案（docs/engineering 下的两个文件）。 */
+async function exportArchive() {
+  const value = await run('导出项目档案', signal => call({ action: 'export', root: props.root }, signal))
+  if (value) archive.value = value
 }
 watch(() => props.root, load, { immediate: true })
 
@@ -46,7 +71,7 @@ watch(() => props.root, load, { immediate: true })
 watch(selectedCluster, async id => {
   showFiles.value = false
   if (!id) { cluster.value = null; return }
-  const value = await run('读取聚类', () => call<ClusterDetail>({ action: 'cluster', root: props.root, id }))
+  const value = await run('读取聚类', signal => call({ action: 'cluster', root: props.root, id }, signal))
   if (value && selectedCluster.value === id) cluster.value = value
 })
 
@@ -63,7 +88,7 @@ const filteredRoutes = computed(() => {
 
 async function openFlow(id: string) {
   section.value = 'flows'
-  const value = await run('读取流程', () => call<FlowDetail>({ action: 'flow', root: props.root, id }))
+  const value = await run('读取流程', signal => call({ action: 'flow', root: props.root, id }, signal))
   if (value) flow.value = value
 }
 
@@ -82,7 +107,7 @@ const nameOf = (id: string) => id.includes('#') ? id.slice(id.indexOf('#') + 1) 
 
 async function runTrace() {
   if (!traceFrom.value.trim() || !traceTo.value.trim()) return
-  const value = await run('追踪路径', () => call<TraceView>({ action: 'trace', root: props.root, from: traceFrom.value, to: traceTo.value }))
+  const value = await run('追踪路径', signal => call({ action: 'trace', root: props.root, from: traceFrom.value, to: traceTo.value }, signal))
   if (value) traced.value = value
 }
 
@@ -93,20 +118,31 @@ function traceFromHere(id: string) { traceFrom.value = id; traced.value = null; 
 <template>
   <div class="min-w-0">
     <div class="flex flex-wrap items-center gap-2">
-      <nav class="flex flex-wrap gap-1">
-        <button v-for="item in sections" :key="item.id" type="button" class="chip" :data-on="section === item.id" @click="section = item.id">
+      <nav class="flex flex-wrap items-center gap-1">
+
+        <button v-for="item in (mode === 'health' ? healthSections : [])" :key="item.id" type="button" class="chip" :data-on="section === item.id" @click="section = item.id">
+          {{ item.label }}
+          <span v-if="health && item.id === 'quality'" class="tabular-nums" :class="health.quality.grade === 'A' ? 'text-jade' : 'text-accent'">{{ health.quality.grade }}</span>
+        </button>
+
+        <button v-for="item in (mode === 'structure' ? sections : [])" :key="item.id" type="button" class="chip" :data-on="section === item.id" @click="section = item.id">
           {{ item.label }}
           <span v-if="views && item.id === 'map'" class="tabular-nums text-muted">{{ views.clusters.total }}</span>
           <span v-if="views && item.id === 'flows'" class="tabular-nums text-muted">{{ views.flows.total }}</span>
           <span v-if="views && item.id === 'routes'" class="tabular-nums text-muted">{{ views.routes.total }}</span>
-          <span v-if="views && item.id === 'cycles'" class="tabular-nums" :class="views.cycles.total ? 'text-[#b42318]' : 'text-muted'">{{ views.cycles.total }}</span>
+          <span v-if="views && item.id === 'cycles'" class="tabular-nums" :class="views.cycles.total ? 'text-danger' : 'text-muted'">{{ views.cycles.total }}</span>
         </button>
       </nav>
       <span v-if="loading" class="text-xs text-muted">{{ loading }}中…</span>
     </div>
-    <p v-if="error" class="mt-2 rounded-md border border-[#f3c4c4] bg-[#fff5f5] px-3 py-2 text-xs text-[#b42318]">{{ error }}</p>
+    <p v-if="error" role="alert" class="notice mt-3">{{ error }} <button class="link" @click="load">重新读取</button></p>
 
-    <template v-if="views">
+    <div v-if="isHealth(section)" class="mt-3">
+      <HealthPanel v-if="health" :report="health" :section="section" :archive="archive" :busy="!!loading" @export="exportArchive" @go="section = $event" />
+      <div v-else-if="!error" class="flex min-h-40 items-center justify-center rounded-xl border border-dashed border-line text-xs text-muted">正在读取提交历史并做体检…</div>
+    </div>
+
+    <template v-else-if="views">
       <!-- 架构图：聚类关系图 + 详情 + 表格视图 -->
       <section v-if="section === 'map'" class="mt-3">
         <p class="text-xs leading-5 text-muted">圆的大小是文件数，连线粗细是两个聚类之间的调用与引用数。点一个圆查看它负责什么、依赖谁；共 {{ views.clusters.total }} 个聚类，另有 {{ views.clusters.scatteredFiles }} 个散落文件未归类。</p>
@@ -136,7 +172,7 @@ function traceFromHere(id: string) { traceFrom.value = id; traced.value = null; 
         <table class="mt-3 w-full text-xs">
           <thead><tr class="border-b border-line text-left text-muted"><th class="py-1.5 font-normal">聚类</th><th class="py-1.5 text-right font-normal">文件</th><th class="w-32 py-1.5 pl-3 font-normal">内聚</th><th class="hidden py-1.5 pl-3 font-normal md:table-cell">关键词</th></tr></thead>
           <tbody>
-            <tr v-for="item in views.clusters.clusters" :key="item.id" class="cursor-pointer border-b border-line/70 hover:bg-canvas" :data-on="selectedCluster === item.id" @click="selectedCluster = item.id">
+            <tr v-for="item in views.clusters.clusters" :key="item.id" class="cursor-pointer border-b border-line/70 hover:bg-canvas" tabindex="0" @keydown.enter="selectedCluster = item.id" @keydown.space.prevent="selectedCluster = item.id" :data-on="selectedCluster === item.id" @click="selectedCluster = item.id">
               <td class="max-w-0 truncate py-1.5" :class="selectedCluster === item.id ? 'font-medium text-accent' : ''" :title="item.label">{{ item.label }}</td>
               <td class="py-1.5 text-right tabular-nums">{{ item.files }}</td>
               <td class="py-1.5 pl-3"><span class="flex items-center gap-1.5"><span class="h-1.5 flex-1 overflow-hidden rounded-full bg-line"><span class="block h-full rounded-full bg-accent" :style="{ width: item.cohesion * 100 + '%' }" /></span><span class="w-8 tabular-nums text-muted">{{ item.cohesion }}</span></span></td>
@@ -174,7 +210,7 @@ function traceFromHere(id: string) { traceFrom.value = id; traced.value = null; 
             <li v-for="step in flowRows" :key="step.id" class="flex items-baseline gap-2 text-xs" :style="{ paddingLeft: step.depth * 14 + 'px' }">
               <span v-if="step.relation" class="shrink-0 text-muted">{{ relationLabels[step.relation] ?? step.relation }}</span>
               <span class="min-w-0 truncate font-mono" :class="step.depth === 0 ? 'font-medium' : ''" :title="step.id">{{ nameOf(step.id) }}</span>
-              <span v-if="step.inferred" class="shrink-0 text-[#946200]" title="经过按命名约定推断的关系">推断</span>
+              <span v-if="step.inferred" class="shrink-0 text-amber" title="经过按命名约定推断的关系">推断</span>
               <span class="ml-auto shrink-0 truncate text-muted" :title="step.location">{{ step.location.slice(step.location.lastIndexOf('/') + 1) }}</span>
             </li>
           </ol>
@@ -230,12 +266,12 @@ function traceFromHere(id: string) { traceFrom.value = id; traced.value = null; 
           </template>
           <p v-else-if="!traced.found" class="text-muted">{{ traced.note }}</p>
           <template v-else>
-            <p v-if="traced.note" class="mb-2 text-[#946200]">{{ traced.note }}</p>
+            <p v-if="traced.note" class="mb-2 text-amber">{{ traced.note }}</p>
             <ol class="space-y-1">
               <li v-for="(hop, step) in traced.hops" :key="hop.id" class="flex items-baseline gap-2">
                 <span class="w-10 shrink-0 text-right text-muted">{{ step ? (relationLabels[hop.relation ?? ''] ?? hop.relation) : '起点' }}</span>
                 <span class="min-w-0 truncate font-mono" :title="hop.id">{{ hop.id }}</span>
-                <span v-if="hop.inferred" class="shrink-0 text-[#946200]">推断</span>
+                <span v-if="hop.inferred" class="shrink-0 text-amber">推断</span>
                 <span class="ml-auto shrink-0 text-muted">{{ hop.location.slice(hop.location.lastIndexOf('/') + 1) }}</span>
               </li>
             </ol>
@@ -243,6 +279,6 @@ function traceFromHere(id: string) { traceFrom.value = id; traced.value = null; 
         </div>
       </section>
     </template>
-    <div v-else-if="!error" class="mt-3 flex min-h-40 items-center justify-center rounded-lg border border-dashed border-line text-xs text-muted">{{ loading || '计算全局视图' }}中…</div>
+    <div v-else-if="!error" class="mt-3 flex min-h-40 items-center justify-center rounded-xl border border-dashed border-line text-xs text-muted">{{ loading || '计算全局视图' }}中…</div>
   </div>
 </template>

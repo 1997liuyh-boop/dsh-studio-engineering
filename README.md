@@ -6,13 +6,24 @@
 
 **Description:** Engineering studio for DSH. It builds a code knowledge graph for the project, ships engineering-method and coding-behaviour skills, and turns a requirements document into an iteration plan: features, steps, impact scope, and parameter and method design.
 
-`dsh-studio-engineering` is an independently installed DSH studio. It works inside the current DSH project session, opens no second chat, and writes no graph files into the project; the only files it writes there are iteration plans under `docs/iterations/`.
+`dsh-studio-engineering` is an independently installed DSH studio. It works inside the current DSH project session, opens no second chat, and writes no graph files into the project; it writes iteration plans under `docs/iterations/` and project archives under `docs/engineering/` when requested.
+
+## Engineering workbench
+
+The page has five areas: project overview, code exploration, change analysis, iteration plans, and coding principles. It uses a black background with iOS-inspired glass surfaces and supports narrow screens, a file-list alternative to the canvas, remembered project selection, and recoverable request errors.
+
+Change analysis maps real worktree changes against HEAD to symbols and affected code. The plans page reads saved plans and can run the same structural check as `eng_plan`. Historical reports show their timestamp and commit; the presence of a report does not mean it passed. Structural checks do not execute functional acceptance criteria.
+
+The principles page saves optional global rules to studio settings and updates the host system prompt. They apply to all project sessions, can be disabled by clearing the text, and never overwrite project conventions. Model instructions do not replace type checks, tests, or review.
 
 ## Features
 
 - **Code knowledge graph.** A built-in parser with no Python, native build or external database. Covers TypeScript, JavaScript and Vue single-file components (including uni-app `.nvue`, in both Composition and Options API style): symbols, signatures, doc comments, component props / emits / models / slots, and import, call, reference, inheritance and render relations.
 - **Always current.** Every tool call compares files and re-parses only the ones that changed. There is no manual rebuild and no stale index.
 - **Impact analysis.** What a change to a symbol reaches, grouped into direct, indirect and regression levels, with a risk rating, the entry points involved, related tests, the page flows that pass through the change and the functional clusters it touches. Current Git changes can be mapped to symbols first.
+- **Graph canvas.** The studio page draws the graph on a dark canvas: files are nodes with a colour tab for their kind, functional clusters are washed-in colour areas, solid lines are import-resolved relations and dashed lines are inferred ones. Zoom, pan, search highlight, legend and minimap; click a cluster name to open it, click a node for its symbols and impact.
+- **Project health.** One report answering "what state is this project in and where to start", shared by the page, the tool and the exported archive: quality (import cycles, unused exports, unreferenced files, oversized files and functions, tests, graph confidence, each with evidence and a penalty that adds up to a score), dependencies (declared in `package.json` versus actually imported, and which clusters depend on which), iteration (commit pace over the last 12 months, commit types, most-changed files, activity per cluster, existing iteration plans) and change difficulty per cluster (refactoring difficulty and extension difficulty, with reasons). Difficulty is a relative ranking, not an estimate of hours.
+- **Project archive.** Export the report to `docs/engineering/project-map.md` and `project-map.json` and commit them with the code, so a new teammate can read it and any model can take it as context without this studio.
 - **Global views.**
   - Functional clusters: modules found from call and dependency relations between files (Louvain community detection) rather than from folders, with cohesion, representative members and inter-cluster dependencies, drawn as a clickable architecture map.
   - Execution flows: from pages, routes and boot files down through calls and renders to requests, stores and utilities.
@@ -35,7 +46,9 @@ In any project session:
 | `@研发工作室:按方案实现` | Implement a plan from `docs/iterations` step by step and check it |
 | `@研发工作室:评审改动` | Review current changes against the requirements and the graph |
 
-Tools: `eng_workspace` (prepare a task), `eng_graph` (`overview`, `search`, `context`, `impact`, `changes`, `rebuild`; global views `clusters`, `flows`, `trace`, `routes`, `cycles`), `eng_plan` (`submit`, `check`). The studio page lists graphed projects, searches symbols, and shows impact and the bundled skills; its Global View tab has the architecture map, execution flows, routes, import cycles and path tracing.
+Tools: `eng_workspace` (prepare a task), `eng_graph` (`overview`, `search`, `context`, `impact`, `changes`, `rebuild`; global views `clusters`, `flows`, `trace`, `routes`, `cycles`; project health `health` and `export`), `eng_plan` (`submit`, `check`). The workbench separates the health report in Project overview from the canvas and structural views in Code exploration. Change analysis, Iteration plans, and Coding principles support the development workflow.
+
+Three ways in: a model inside a DSH session calls `eng_graph`; any other model, script or tool reads the exported `docs/engineering/project-map.md` (or the JSON next to it); a teammate opens the studio page. The visual direction of the graph canvas follows [sdyckjq-lab/llm-wiki-skill](https://github.com/sdyckjq-lab/llm-wiki-skill); the implementation is written for this repository and includes none of its code.
 
 ## Install
 
@@ -54,6 +67,7 @@ Local development needs Node.js 22.19 or later:
 npm ci
 npm run build
 npm run typecheck
+npm run lint
 npm test
 npm run check
 ```

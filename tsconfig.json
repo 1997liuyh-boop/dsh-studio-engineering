@@ -3,15 +3,28 @@
     "target": "ES2023",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "types": ["node"],
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "node"
+    ],
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "erasableSyntaxOnly": true,
     "verbatimModuleSyntax": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": ["studios/engineering/src/**/*.ts", "studios/engineering/src/**/*.d.ts", "tests/**/*.ts"]
+  "include": [
+    "studios/engineering/src/**/*.ts",
+    "studios/engineering/src/**/*.d.ts",
+    "tests/**/*.ts",
+    "studios/engineering/src/**/*.vue"
+  ]
 }

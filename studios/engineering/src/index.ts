@@ -1,18 +1,25 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { homedir } from 'node:os'
-import { isAbsolute, join } from 'node:path'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { ARCHIVE_DIR, ARCHIVE_JSON, ARCHIVE_MARKDOWN, renderArchive } from './archive.ts'
 import { headCommit, workingChanges } from './git.ts'
 import { GraphEngine } from './graph/engine.ts'
+import { healthOf, type HealthReport } from './graph/health.ts'
 import { clusterDetail, clusterList, clusterOfNode, cycleList, flowDetail, flowList, routeList, traceResult } from './graph/present.ts'
 import { brief, changedSymbols, context, impact, overview, resolveReference, search, type GraphIndex } from './graph/query.ts'
 import type { Host, SkillRegistry, StudioTask } from './host.ts'
-import { checkPlan, parsePlan, renderPlan, validatePlan, type SavedPlan } from './plan.ts'
-import { exists, inspectProject, object, text } from './project.ts'
+import { parsePlan, renderPlan, validatePlan, type SavedPlan } from './plan.ts'
+import { readHistory } from './history.ts'
+import { exists, inspectProject, object, readManifest, readPlans, text } from './project.ts'
 import { principlesSummary, taskLabels, taskMethods, taskPrompt, workspaceInstructions, type TaskKind } from './prompt.ts'
 import { loadSkills, skillProvider } from './skills.ts'
 import type { GraphNode } from './types.ts'
+import { SettingsStore } from './settings.ts'
+import { verifyPlan } from './plan-service.ts'
+import { createPageDispatch } from './page-service.ts'
+import type { Snapshot } from './protocol.ts'
 
 /** 插件注册名与安装包一致。 */
 export const name = 'dsh-studio-engineering'
@@ -21,14 +28,10 @@ export const inject = ['studioProjects', 'tools', 'systemPrompt']
 /** 构建时注入的 studio.json 声明；tasks 是输入框 @ 候选里的快捷任务。 */
 declare const STUDIO_PROJECT: { name: string; icon: string; description: string; tasks?: StudioTask[] }
 
-interface Settings {
-  schemaVersion: 1
-  /** 是否把编码准则摘要写进常驻系统提示词 */
-  principles: boolean
-}
 
 const tasks = Object.keys(taskLabels) as TaskKind[]
-const graphActions = ['overview', 'search', 'context', 'impact', 'changes', 'clusters', 'flows', 'trace', 'routes', 'cycles', 'rebuild'] as const
+const graphActions = ['overview', 'search', 'context', 'impact', 'changes', 'clusters', 'flows', 'trace', 'routes', 'cycles', 'health', 'export', 'rebuild'] as const
+const healthSections = ['quality', 'dependencies', 'iteration', 'difficulty'] as const
 const json = (value: object) => JSON.stringify(value)
 
 /** 注册研发工作室的工具、技能、系统提示词与页面；任务始终使用执行会话自己的目录。 */
@@ -40,15 +43,15 @@ export async function apply(ctx: Host): Promise<void> {
   const methods = (names: string[]) => names.flatMap(name => { const skill = skills.find(item => item.name === name); return skill ? [{ name, content: skill.content }] : [] })
 
   const settingsPath = join(home, 'settings.json')
-  let settings: Settings = { schemaVersion: 1, principles: true }
-  try { const saved = object(JSON.parse(await readFile(settingsPath, 'utf8'))); if (saved.schemaVersion === 1) settings = { schemaVersion: 1, principles: saved.principles !== false } } catch { /* 首次运行使用默认设置 */ }
+  const settingsStore = new SettingsStore(settingsPath)
+  await settingsStore.load()
 
   ctx.effect(() => () => lifetime.abort(), '研发工作室：结束在途的建图')
   // 系统提示词段随设置重新登记：关闭常驻准则后只保留调用指引。
   let disposePrompt = () => {}
   const registerPrompt = () => {
     disposePrompt()
-    disposePrompt = ctx.systemPrompt.section({ name: 'studio-engineering-workspace', order: 925, interpolate: false, text: workspaceInstructions + (settings.principles ? principlesSummary : '') })
+    disposePrompt = ctx.systemPrompt.section({ name: 'studio-engineering-workspace', order: 925, interpolate: false, text: workspaceInstructions + (settingsStore.value.principles ? principlesSummary : '') + (settingsStore.value.customRules ? '\n\n用户配置的全局附加编码规则：\n' + settingsStore.value.customRules : '') })
   }
   ctx.effect(() => { registerPrompt(); return () => disposePrompt() }, '研发工作室：调用指引与编码准则')
 
@@ -72,6 +75,38 @@ export async function apply(ctx: Host): Promise<void> {
     return { problem: { reference, issue: '图谱里没有找到', suggestions: resolution.suggestions } }
   }
   const graphBrief = (index: GraphIndex) => ({ commit: index.graph.commit, builtAt: index.graph.builtAt, stats: index.graph.stats })
+  /** 项目体检：图谱 + 最近 12 个月的提交历史 + 根目录依赖声明 + 已有的迭代方案。 */
+  const assess = async (index: GraphIndex, signal: AbortSignal): Promise<HealthReport> => {
+    const root = index.graph.root
+    const [history, manifest, plans] = await Promise.all([readHistory(root, index.graph.commit, 12, signal), readManifest(root), readPlans(root)])
+    return healthOf(index, history, manifest, plans)
+  }
+  /** 给模型的体检摘要：每类只留最要紧的几条，完整内容按 section 再取。 */
+  const healthBrief = (report: HealthReport) => ({
+    scale: report.scale, highlights: report.highlights,
+    quality: { score: report.quality.score, grade: report.quality.grade, findings: report.quality.findings.map(finding => ({ id: finding.id, level: finding.level, title: finding.title, value: finding.value, detail: finding.detail, penalty: finding.penalty, items: finding.items.slice(0, 5) })) },
+    dependencies: { manifest: report.dependencies.manifest, packages: report.dependencies.packages.slice(0, 15), unused: report.dependencies.unused, undeclared: report.dependencies.undeclared.slice(0, 15), foundations: report.dependencies.foundations, note: report.dependencies.note },
+    iteration: { available: report.iteration.available, pace: report.iteration.pace, types: report.iteration.types, hotspots: report.iteration.hotspots.slice(0, 8), clusters: report.iteration.clusters.slice(0, 8), recent: report.iteration.recent.slice(0, 8), plans: report.iteration.plans },
+    difficulty: { note: report.difficulty.note, clusters: [...report.difficulty.clusters].sort((a, b) => b.refactor.score - a.refactor.score).slice(0, 12).map(cluster => ({ id: cluster.id, label: cluster.label, files: cluster.files, refactor: cluster.refactor, extend: cluster.extend })) },
+    more: '每一类的完整内容用 eng_graph（action=health，target=quality / dependencies / iteration / difficulty）查看；要把这份报告留给以后接手的人或模型，用 action=export 写成项目档案。',
+  })
+  /** 把体检报告写成项目档案：Markdown 给人和任意模型读，JSON 是同一份数据的结构化版本。 */
+  const exportArchive = async (index: GraphIndex, signal: AbortSignal) => {
+    const root = index.graph.root
+    const [project, report] = await Promise.all([inspectProject(root), assess(index, signal)])
+    const brief = overview(index)
+    const extras = {
+      clusters: clusterList(index, 60).clusters.map(cluster => ({ id: cluster.id, label: cluster.label, files: cluster.files, cohesion: cluster.cohesion, keywords: cluster.keywords, directories: cluster.directories, members: cluster.members, dependsOn: cluster.dependsOn })),
+      hubs: brief.hubs.map(hub => ({ id: hub.id, usedBy: hub.usedBy, ...(hub.signature ? { signature: hub.signature } : {}) })),
+      entries: brief.entries,
+      routes: routeList(index, { limit: 2000 }).routes.map(route => ({ path: route.path, file: route.file, kind: route.kind, ...(route.title ? { title: route.title } : {}) })),
+    }
+    signal.throwIfAborted()
+    await mkdir(join(root, ARCHIVE_DIR), { recursive: true })
+    await writeFile(join(root, ARCHIVE_MARKDOWN), renderArchive(project, report, extras))
+    await writeFile(join(root, ARCHIVE_JSON), JSON.stringify({ generatedAt: new Date().toISOString(), project: { name: project.name, frameworks: project.frameworks, packageManager: project.packageManager, conventions: project.conventions }, ...report, structure: extras }, null, 2) + '\n')
+    return { document: ARCHIVE_MARKDOWN, data: ARCHIVE_JSON, grade: report.quality.grade, score: report.quality.score, highlights: report.highlights }
+  }
 
   ctx.effect(() => ctx.tools.register({
     name: 'eng_workspace',
@@ -91,11 +126,11 @@ export async function apply(ctx: Host): Promise<void> {
 
   ctx.effect(() => ctx.tools.register({
     name: 'eng_graph',
-    description: '查询当前项目的代码知识图谱（TypeScript / JavaScript / Vue），每次调用自动同步最新代码。overview：项目规模、模块与依赖、被使用最多的符号、入口；search：按名字、路径或用途找符号（query）；context：一个符号或文件的签名、成员、谁在用它、它用了谁（target）；impact：改动若干目标会波及哪里，按直接 / 间接 / 需回归分级并给出风险（targets）；changes：把 Git 改动对应到符号并计算影响面（base 缺省为 HEAD，即工作区未提交的改动）；clusters：按调用关系自动划分的功能聚类及其相互依赖，带 target 时返回目标所在聚类的全部文件（target 也可以直接写聚类 ID，如 c3）；flows：从页面、路由与入口出发的执行流程，带 target 时只列经过它的流程，target 是某条流程的入口文件时返回逐步明细，query 按名称或路由过滤；trace：从 from 到 to 的最短调用路径（A 怎样调用到 B）；routes：框架约定的页面与接口路由（uni-app 的 pages.json、Nuxt 的 pages 与 server 目录），query 过滤；cycles：文件之间的循环导入；rebuild：丢弃缓存全量重建。目标写「路径#符号」、文件路径或符号名；同名时返回候选。',
+    description: '查询当前项目的代码知识图谱（TypeScript / JavaScript / Vue），每次调用自动同步最新代码。overview：项目规模、模块与依赖、被使用最多的符号、入口；search：按名字、路径或用途找符号（query）；context：一个符号或文件的签名、成员、谁在用它、它用了谁（target）；impact：改动若干目标会波及哪里，按直接 / 间接 / 需回归分级并给出风险（targets）；changes：把 Git 改动对应到符号并计算影响面（base 缺省为 HEAD，即工作区未提交的改动）；clusters：按调用关系自动划分的功能聚类及其相互依赖，带 target 时返回目标所在聚类的全部文件（target 也可以直接写聚类 ID，如 c3）；flows：从页面、路由与入口出发的执行流程，带 target 时只列经过它的流程，target 是某条流程的入口文件时返回逐步明细，query 按名称或路由过滤；trace：从 from 到 to 的最短调用路径（A 怎样调用到 B）；routes：框架约定的页面与接口路由（uni-app 的 pages.json、Nuxt 的 pages 与 server 目录），query 过滤；cycles：文件之间的循环导入；health：项目体检——规模、质量（循环导入、未使用的导出、超长文件与函数、测试情况及质量分）、依赖（package.json 声明与源码实际导入的对照、聚类之间的依赖）、迭代情况（最近 12 个月的提交节奏、改动最频繁的文件、各聚类的活跃度、已有的迭代方案）与每个功能聚类的优化难度、迭代难度及原因，带 target（quality / dependencies / iteration / difficulty）时返回该类的完整内容，评估项目质量、依赖和改动难度时先调它；export：把体检结果写成项目档案 docs/engineering/project-map.md 与 project-map.json，供以后接手的人或任意模型直接阅读（会在项目里写这两个文件）；rebuild：丢弃缓存全量重建。目标写「路径#符号」、文件路径或符号名；同名时返回候选。',
     parameters: { type: 'object', properties: {
       action: { type: 'string', enum: [...graphActions] },
       query: { type: 'string', maxLength: 200, description: 'search：关键词；flows / routes：按名称、路由或文件过滤' },
-      target: { type: 'string', maxLength: 600, description: 'context / clusters / flows：路径#符号、文件路径、符号名或聚类 ID' },
+      target: { type: 'string', maxLength: 600, description: 'context / clusters / flows：路径#符号、文件路径、符号名或聚类 ID；health：quality / dependencies / iteration / difficulty' },
       from: { type: 'string', maxLength: 600, description: 'trace：起点' },
       to: { type: 'string', maxLength: 600, description: 'trace：终点' },
       targets: { type: 'array', maxItems: 30, items: { type: 'string', maxLength: 600 }, description: 'impact：要改动的目标' },
@@ -142,6 +177,14 @@ export async function apply(ctx: Host): Promise<void> {
       }
       if (action === 'routes') return json({ freshness, ...routeList(index, { query: args.query === undefined ? undefined : text(args.query, 200), limit: limit ?? 100 }) })
       if (action === 'cycles') return json({ freshness, ...cycleList(index, limit ?? 20) })
+      if (action === 'health') {
+        const report = await assess(index, execution.signal)
+        if (args.target === undefined) return json({ freshness, commit: report.commit, ...healthBrief(report) })
+        const section = text(args.target, 32) as typeof healthSections[number]
+        if (!healthSections.includes(section)) return json({ freshness, issue: 'health 的 target 只能是 quality、dependencies、iteration、difficulty，或不带 target 看总览' })
+        return json({ freshness, commit: report.commit, section, ...report[section] })
+      }
+      if (action === 'export') return json({ freshness, ok: true, ...(await exportArchive(index, execution.signal)), instructions: '档案已写入项目。告诉用户两个文件的路径与最值得先看的几条结论；不要把整份档案贴回对话，也不要手改这两个文件。' })
       if (action === 'impact') {
         if (!Array.isArray(args.targets) || !args.targets.length) throw new Error('impact 需要 targets')
         const found = args.targets.map(item => locate(index, text(item, 600)))
@@ -154,7 +197,7 @@ export async function apply(ctx: Host): Promise<void> {
       const mapped = changedSymbols(index, changes)
       return json({ freshness, changedFiles: changes.length, symbols: mapped.symbols.map(node => brief(index, node)), deletedFiles: mapped.deleted, outsideGraph: mapped.outside.slice(0, 60), impact: mapped.symbols.length ? impact(index, mapped.symbols, { depth, limit }) : undefined })
     },
-    presentCall(input) { const args = object(input); const labels: Record<string, string> = { overview: '项目概览', search: '搜索符号', context: '查看上下文', impact: '影响分析', changes: '分析当前改动', clusters: '功能聚类', flows: '执行流程', trace: '路径追踪', routes: '路由表', cycles: '循环依赖', rebuild: '重建图谱' }; return { card: 'generic', title: '研发工作室 · ' + (labels[String(args.action)] ?? '查询图谱'), kind: 'read', rawInput: input } },
+    presentCall(input) { const args = object(input); const labels: Record<string, string> = { overview: '项目概览', search: '搜索符号', context: '查看上下文', impact: '影响分析', changes: '分析当前改动', clusters: '功能聚类', flows: '执行流程', trace: '路径追踪', routes: '路由表', cycles: '循环依赖', health: '项目体检', export: '导出项目档案', rebuild: '重建图谱' }; return { card: 'generic', title: '研发工作室 · ' + (labels[String(args.action)] ?? '查询图谱'), kind: args.action === 'export' ? 'edit' : 'read', rawInput: input } },
   }), '研发工作室：图谱查询工具')
 
   ctx.effect(() => ctx.tools.register({
@@ -181,17 +224,8 @@ export async function apply(ctx: Host): Promise<void> {
           impact: validation.resolved.flatMap(item => item.impact ? [{ target: item.change.target, risk: item.impact.risk, direct: item.impact.summary.direct, indirect: item.impact.summary.indirect, tests: item.impact.summary.tests.length }] : []) })
       }
       if (args.stage === 'check') {
-        const slug = text(args.slug, 64)
-        if (!/^[a-z0-9][a-z0-9-]{1,63}$/.test(slug)) throw new Error('slug 格式无效')
-        const directory = join(root, 'docs/iterations', slug)
-        let saved: SavedPlan
-        try { saved = JSON.parse(await readFile(join(directory, 'iteration.json'), 'utf8')) as SavedPlan } catch { throw new Error('找不到 docs/iterations/' + slug + '/iteration.json，请先用 stage=submit 提交方案') }
-        if (saved.schemaVersion !== 1) throw new Error('方案文件版本不受支持')
         const { index } = await ensure(root, execution.signal)
-        const changes = saved.baseCommit ? await workingChanges(root, saved.baseCommit, execution.signal) : undefined
-        const report = await checkPlan(index, saved, changes, onDisk)
-        await writeFile(join(directory, 'check-report.json'), JSON.stringify({ checkedAt: new Date().toISOString(), commit: index.graph.commit, ...report }, null, 2) + '\n')
-        return json({ ...report, report: 'docs/iterations/' + slug + '/check-report.json' })
+        return json({ ...await verifyPlan(index, text(args.slug, 64), execution.signal), report: 'docs/iterations/' + text(args.slug, 64) + '/check-report.json' })
       }
       throw new Error('未知方案阶段')
     },
@@ -199,45 +233,8 @@ export async function apply(ctx: Host): Promise<void> {
   }), '研发工作室：迭代方案工具')
 
   /** 页面操作：只对已建过图的项目做查询；建图需要用户填写绝对路径。 */
-  const snapshot = async () => ({ graphs: await engine.list(), skills: skills.map(skill => ({ name: skill.name, description: skill.description })), tasks: STUDIO_PROJECT.tasks ?? [], instructions: workspaceInstructions, principles: principlesSummary, settings })
-  const dispatch = async (input: Record<string, unknown>): Promise<object> => {
-    const action = text(input.action, 32)
-    if (action === 'snapshot') return snapshot()
-    if (action === 'configure') {
-      settings = { schemaVersion: 1, principles: object(input.settings).principles !== false }
-      await mkdir(home, { recursive: true })
-      await writeFile(settingsPath, JSON.stringify(settings, null, 2) + '\n')
-      registerPrompt()
-      return snapshot()
-    }
-    if (action === 'skill') {
-      const skill = skills.find(item => item.name === text(input.name, 64))
-      if (!skill) throw new Error('没有这个技能')
-      return { name: skill.name, description: skill.description, content: skill.content }
-    }
-    const root = text(input.root, 2048)
-    if (!isAbsolute(root)) throw new Error('请填写项目的绝对路径')
-    if (action === 'remove') { await engine.remove(root); return snapshot() }
-    if (action !== 'build' && !(await engine.list()).some(meta => meta.root === root)) throw new Error('这个项目还没有建过图谱')
-    const { index, freshness } = await engine.ensure(root, { signal: lifetime.signal, force: action === 'rebuild' })
-    if (action === 'build' || action === 'rebuild' || action === 'overview') return { freshness, overview: overview(index) }
-    if (action === 'search') return { freshness, ...search(index, text(input.query, 200), 30) }
-    if (action === 'views') return { clusters: clusterList(index, 40), flows: flowList(index, { limit: 400 }), routes: routeList(index, { limit: 1000 }), cycles: cycleList(index, 50) }
-    if (action === 'cluster') { const detail = clusterDetail(index, text(input.id, 16)); if (!detail) throw new Error('没有这个聚类'); return detail }
-    if (action === 'flow') { const detail = flowDetail(index, text(input.id, 2048)); if (!detail) throw new Error('没有这条流程'); return detail }
-    if (action === 'trace') {
-      const from = locate(index, text(input.from, 600)), to = locate(index, text(input.to, 600))
-      if ('problem' in from) return from.problem
-      if ('problem' in to) return to.problem
-      return traceResult(index, from.node, to.node)
-    }
-    if (action === 'context' || action === 'impact') {
-      const found = locate(index, text(input.target, 600))
-      if ('problem' in found) return found.problem
-      return action === 'context' ? context(index, found.node, 40) : impact(index, [found.node], { limit: 60 })
-    }
-    throw new Error('未知工作室操作')
-  }
+  const snapshot = async (): Promise<Snapshot> => ({ graphs: await engine.list(), skills: skills.map(skill => ({ name: skill.name, description: skill.description })), tasks: STUDIO_PROJECT.tasks ?? [], instructions: workspaceInstructions, principles: principlesSummary, settings: settingsStore.value })
+  const dispatch = createPageDispatch({ engine, signal: lifetime.signal, skills, snapshot, assess, exportArchive, locate, async configure(input) { await settingsStore.save(input); registerPrompt() } })
   const send = (res: ServerResponse, status: number, value: object) => {
     res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' })
     res.end(JSON.stringify(value))

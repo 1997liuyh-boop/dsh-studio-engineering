@@ -131,10 +131,10 @@ function toggle(id: string) { selected.value = selected.value === id ? '' : id }
     <svg :viewBox="'0 0 ' + WIDTH + ' ' + HEIGHT" class="block h-auto w-full" role="img" :aria-label="'架构图：' + clusters.length + ' 个功能聚类及其相互关系'" @click.self="selected = ''">
       <g>
         <line v-for="pair in pairs" :key="pair.a + pair.b" class="map-link" :data-tone="lineTone(pair.a, pair.b)"
-          :x1="placed.get(pair.a)!.x" :y1="placed.get(pair.a)!.y" :x2="placed.get(pair.b)!.x" :y2="placed.get(pair.b)!.y" :stroke-width="strokeWidth(pair.weight)" />
+          :x1="placed.get(pair.a)?.x" :y1="placed.get(pair.a)?.y" :x2="placed.get(pair.b)?.x" :y2="placed.get(pair.b)?.y" :stroke-width="strokeWidth(pair.weight)" />
       </g>
       <g v-for="node in layout" :key="node.cluster.id" class="map-node" :data-tone="tone(node.cluster.id)" tabindex="0" role="button" :aria-label="node.cluster.label + '，' + node.cluster.files + ' 个文件'"
-        @click.stop="toggle(node.cluster.id)" @keydown.enter.prevent="toggle(node.cluster.id)"
+        @click.stop="toggle(node.cluster.id)" @keydown.enter.prevent="toggle(node.cluster.id)" @keydown.space.prevent="toggle(node.cluster.id)"
         @mouseenter="hover = { cluster: node.cluster, x: node.x, y: node.y - node.r }" @mouseleave="hover = null">
         <circle :cx="node.x" :cy="node.y" :r="node.r + 6" fill="transparent" />
         <circle class="map-dot" :cx="node.x" :cy="node.y" :r="node.r" />

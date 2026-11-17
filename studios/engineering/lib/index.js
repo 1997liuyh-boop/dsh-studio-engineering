@@ -4,10 +4,135 @@ import {createRequire as __createRequire} from 'node:module';import {fileURLToPa
 var define_STUDIO_PROJECT_default = { schemaVersion: 1, id: "engineering", name: "\u7814\u53D1\u5DE5\u4F5C\u5BA4", icon: "\u25C8", description: "\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31 \xB7 \u5DE5\u7A0B\u65B9\u6CD5\u6280\u80FD \xB7 \u9700\u6C42\u8FED\u4EE3\u65B9\u6848", order: 18, entry: "/studio-projects/engineering", capabilities: ["code-graph", "impact-analysis", "iteration-plan", "bundled-skills", "dsh-session"], compatibility: { host: "0.2.1-rc.2", runtime: "^0.5.0", worktable: "^0.6.0" }, tasks: [{ id: "graph", label: "\u5EFA\u7ACB\u77E5\u8BC6\u56FE\u8C31", description: "\u89E3\u6790\u9879\u76EE\u4EE3\u7801\uFF0C\u751F\u6210\u7B26\u53F7\u4E0E\u4F9D\u8D56\u5173\u7CFB\u56FE\u8C31", text: "\u3010\u4EFB\u52A1\u7C7B\u578B\uFF1A\u5EFA\u7ACB\u77E5\u8BC6\u56FE\u8C31\u3011\u8C03\u7528 eng_workspace\uFF08task=graph\uFF09\uFF0C\u6309\u8FD4\u56DE\u7684\u5185\u7F6E\u6D41\u7A0B\u6267\u884C\u3002\u4E3A\u5F53\u524D\u9879\u76EE\u5EFA\u7ACB\u6216\u5237\u65B0\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\uFF0C\u5E76\u8BF4\u660E\u56FE\u8C31\u6982\u51B5\u3002" }, { id: "analyze", label: "\u5206\u6790\u9700\u6C42\u6587\u6863", description: "\u8BFB\u9700\u6C42\uFF0C\u4EA7\u51FA\u529F\u80FD\u70B9\u3001\u6B65\u9AA4\u3001\u5F71\u54CD\u8303\u56F4\u4E0E\u63A5\u53E3\u8BBE\u8BA1", text: "\u3010\u4EFB\u52A1\u7C7B\u578B\uFF1A\u5206\u6790\u9700\u6C42\u6587\u6863\u3011\u8C03\u7528 eng_workspace\uFF08task=analyze\uFF09\uFF0C\u6309\u8FD4\u56DE\u7684\u5185\u7F6E\u6D41\u7A0B\u6267\u884C\u3002\u8BFB\u53D6\u4E0B\u9762\u7ED9\u51FA\u7684\u9700\u6C42\u6587\u6863\u6216\u9700\u6C42\u63CF\u8FF0\uFF0C\u4EA7\u51FA\u8FED\u4EE3\u65B9\u6848\uFF1A\u529F\u80FD\u70B9\u3001\u8FED\u4EE3\u6B65\u9AA4\u3001\u5F71\u54CD\u8303\u56F4\u3001\u53C2\u6570\u4E0E\u65B9\u6CD5\u8BBE\u8BA1\u3002" }, { id: "impact", label: "\u5F71\u54CD\u5206\u6790", description: "\u67E5\u770B\u6539\u52A8\u67D0\u4E2A\u7B26\u53F7\u6216\u5F53\u524D\u6539\u52A8\u4F1A\u6CE2\u53CA\u54EA\u91CC", text: "\u3010\u4EFB\u52A1\u7C7B\u578B\uFF1A\u5F71\u54CD\u5206\u6790\u3011\u8C03\u7528 eng_workspace\uFF08task=impact\uFF09\uFF0C\u6309\u8FD4\u56DE\u7684\u5185\u7F6E\u6D41\u7A0B\u6267\u884C\u3002\u5206\u6790\u4E0B\u9762\u6307\u5B9A\u7684\u7B26\u53F7\u3001\u6587\u4EF6\u6216\u5F53\u524D\u6539\u52A8\u4F1A\u5F71\u54CD\u54EA\u4E9B\u5730\u65B9\u3002" }, { id: "implement", label: "\u6309\u65B9\u6848\u5B9E\u73B0", description: "\u6309\u8FED\u4EE3\u65B9\u6848\u9010\u6B65\u5B9E\u73B0\u5E76\u6838\u5BF9", text: "\u3010\u4EFB\u52A1\u7C7B\u578B\uFF1A\u6309\u65B9\u6848\u5B9E\u73B0\u3011\u8C03\u7528 eng_workspace\uFF08task=implement\uFF09\uFF0C\u6309\u8FD4\u56DE\u7684\u5185\u7F6E\u6D41\u7A0B\u6267\u884C\u3002\u6309 docs/iterations \u4E0B\u7684\u8FED\u4EE3\u65B9\u6848\u9010\u6B65\u5B9E\u73B0\u5E76\u9A8C\u8BC1\u3002" }, { id: "review", label: "\u8BC4\u5BA1\u6539\u52A8", description: "\u5BF9\u7167\u9700\u6C42\u4E0E\u56FE\u8C31\u8BC4\u5BA1\u6539\u52A8", text: "\u3010\u4EFB\u52A1\u7C7B\u578B\uFF1A\u8BC4\u5BA1\u6539\u52A8\u3011\u8C03\u7528 eng_workspace\uFF08task=review\uFF09\uFF0C\u6309\u8FD4\u56DE\u7684\u5185\u7F6E\u6D41\u7A0B\u6267\u884C\u3002\u8BC4\u5BA1\u5F53\u524D\u5DE5\u4F5C\u533A\u6216\u6307\u5B9A\u5206\u652F\u7684\u4EE3\u7801\u6539\u52A8\u3002" }] };
 
 // studios/engineering/src/index.ts
-import { mkdir as mkdir2, readFile as readFile6, writeFile as writeFile2 } from "node:fs/promises";
+import { mkdir as mkdir4, writeFile as writeFile4 } from "node:fs/promises";
 import { homedir as homedir2 } from "node:os";
-import { isAbsolute as isAbsolute3, join as join7 } from "node:path";
+import { join as join8 } from "node:path";
 import { fileURLToPath as fileURLToPath2 } from "node:url";
+
+// studios/engineering/src/archive.ts
+var ARCHIVE_DIR = "docs/engineering";
+var ARCHIVE_MARKDOWN = ARCHIVE_DIR + "/project-map.md";
+var ARCHIVE_JSON = ARCHIVE_DIR + "/project-map.json";
+var mark = { good: "\u6B63\u5E38", watch: "\u7559\u610F", risk: "\u4F18\u5148\u5904\u7406" };
+var day = (iso) => iso ? iso.slice(0, 10) : "\u2014";
+var cell = (value) => String(value).replace(/\|/g, "\\|").replace(/\s*\n\s*/g, " ");
+var table = (head, rows) => rows.length ? ["| " + head.join(" | ") + " |", "| " + head.map(() => "---").join(" | ") + " |", ...rows.map((row) => "| " + row.map(cell).join(" | ") + " |")].join("\n") : "\uFF08\u65E0\uFF09";
+function renderArchive(project, report, extras) {
+  const { scale, quality, dependencies, iteration, difficulty } = report;
+  const lines = [
+    "# \u9879\u76EE\u6863\u6848\uFF1A" + project.name,
+    "",
+    "> \u7531\u7814\u53D1\u5DE5\u4F5C\u5BA4\u6839\u636E\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\u4E0E Git \u63D0\u4EA4\u8BB0\u5F55\u81EA\u52A8\u751F\u6210\u3002\u751F\u6210\u4E8E " + day((/* @__PURE__ */ new Date()).toISOString()) + "\uFF0C\u5BF9\u5E94\u63D0\u4EA4 `" + (report.commit ? report.commit.slice(0, 10) : "\u975E Git \u76EE\u5F55") + "`\u3002",
+    "> \u4E0D\u8981\u624B\u6539\u672C\u6587\u4EF6\uFF1A\u5728\u7814\u53D1\u5DE5\u4F5C\u5BA4\u9875\u9762\u70B9\u300C\u5BFC\u51FA\u9879\u76EE\u6863\u6848\u300D\uFF0C\u6216\u8BA9\u6A21\u578B\u8C03\u7528 `eng_graph`\uFF08action=export\uFF09\u91CD\u65B0\u751F\u6210\u3002\u7ED3\u6784\u5316\u6570\u636E\u89C1\u540C\u76EE\u5F55\u7684 `project-map.json`\u3002",
+    "",
+    "## \u600E\u4E48\u7528\u8FD9\u4EFD\u6863\u6848",
+    "",
+    "- **\u7B2C\u4E00\u6B21\u63A5\u624B**\uFF1A\u5148\u770B\u300C\u4E00\u89C8\u300D\u548C\u300C\u6700\u503C\u5F97\u5148\u770B\u7684\u300D\uFF0C\u518D\u6309\u300C\u529F\u80FD\u805A\u7C7B\u300D\u627E\u5230\u8981\u6539\u7684\u90A3\u5757\u4EE3\u7801\u5728\u54EA\u91CC\u3001\u4F9D\u8D56\u8C01\u3002",
+    "- **\u8BC4\u4F30\u4E00\u9879\u6539\u52A8**\uFF1A\u5728\u300C\u6539\u52A8\u96BE\u5EA6\u300D\u91CC\u627E\u5230\u5B83\u6240\u5728\u7684\u805A\u7C7B\uFF0C\u770B\u4F18\u5316\u96BE\u5EA6\u3001\u8FED\u4EE3\u96BE\u5EA6\u548C\u539F\u56E0\uFF1B\u518D\u770B\u300C\u8D28\u91CF\u300D\u91CC\u5B83\u6709\u6CA1\u6709\u5FAA\u73AF\u5BFC\u5165\u3001\u8D85\u957F\u51FD\u6570\u3002",
+    "- **\u7ED9\u6A21\u578B\u7528**\uFF1A\u628A\u672C\u6587\u4EF6\u4F5C\u4E3A\u4E0A\u4E0B\u6587\u4EA4\u7ED9\u4EFB\u610F\u6A21\u578B\u5373\u53EF\uFF1B\u80FD\u8C03\u7528\u5DE5\u5177\u7684\u6A21\u578B\u8BFB `project-map.json`\uFF0C\u5B57\u6BB5\u4E0E\u4E0B\u9762\u5404\u8282\u4E00\u4E00\u5BF9\u5E94\u3002",
+    "- **\u8FB9\u754C**\uFF1A\u7ED3\u8BBA\u6765\u81EA\u9759\u6001\u5206\u6790\uFF08TypeScript / JavaScript / Vue\uFF09\u4E0E\u63D0\u4EA4\u8BB0\u5F55\u3002\u52A8\u6001\u8C03\u7528\u3001\u5B57\u7B26\u4E32\u62FC\u51FA\u6765\u7684\u8DEF\u5F84\u3001\u6846\u67B6\u6309\u7EA6\u5B9A\u52A0\u8F7D\u7684\u6587\u4EF6\u3001\u5176\u4ED6\u8BED\u8A00\u7684\u4EE3\u7801\u770B\u4E0D\u5230\uFF1B\u6807\u300C\u63A8\u65AD\u300D\u7684\u5173\u7CFB\u6765\u81EA\u81EA\u52A8\u5BFC\u5165\u7B49\u7EA6\u5B9A\uFF0C\u9700\u8981\u6253\u5F00\u6587\u4EF6\u6838\u5BF9\u3002\u96BE\u5EA6\u662F\u7528\u6765\u6392\u5148\u540E\u7684\u76F8\u5BF9\u503C\uFF0C\u4E0D\u662F\u5DE5\u65F6\u3002",
+    "",
+    "## \u4E00\u89C8",
+    "",
+    table(["\u9879\u76EE", "\u6570\u503C"], [
+      ["\u6846\u67B6", project.frameworks.join("\u3001") || "\u672A\u8BC6\u522B"],
+      ["\u89C4\u6A21", scale.files + " \u4E2A\u6E90\u7801\u6587\u4EF6\u3001" + scale.symbols + " \u4E2A\u7B26\u53F7\u3001\u7EA6 " + scale.lines + " \u884C"],
+      ["\u8BED\u8A00", Object.entries(scale.languages).map(([name3, count]) => name3 + " " + count).join("\u3001")],
+      ["\u7ED3\u6784", scale.clusters + " \u4E2A\u529F\u80FD\u805A\u7C7B\uFF0C\u53E6\u6709 " + scale.scatteredFiles + " \u4E2A\u6563\u843D\u6587\u4EF6\uFF1B" + scale.pages + " \u4E2A\u9875\u9762\u3001" + scale.apis + " \u4E2A\u63A5\u53E3\u8DEF\u7531"],
+      ["\u8D28\u91CF", quality.grade + " \u7EA7\uFF08" + quality.score + " \u5206\uFF09"],
+      ["\u6D4B\u8BD5", scale.testFiles ? scale.testFiles + " \u4E2A\u6D4B\u8BD5\u6587\u4EF6" : "\u6CA1\u6709\u6D4B\u8BD5"],
+      ["\u8FED\u4EE3", iteration.pace]
+    ]),
+    "",
+    "### \u6700\u503C\u5F97\u5148\u770B\u7684",
+    "",
+    ...report.highlights.length ? report.highlights.map((item) => "- **" + mark[item.level] + "** " + item.text) : ["- \u6CA1\u6709\u9700\u8981\u4F18\u5148\u5904\u7406\u7684\u95EE\u9898\u3002"],
+    "",
+    "## \u529F\u80FD\u805A\u7C7B",
+    "",
+    "\u805A\u7C7B\u6309\u6587\u4EF6\u4E4B\u95F4\u7684\u8C03\u7528\u3001\u5F15\u7528\u4E0E\u6E32\u67D3\u5173\u7CFB\u81EA\u52A8\u5212\u5206\uFF0C\u4E0D\u6309\u76EE\u5F55\u3002\u5185\u805A\u5EA6\u662F\u5185\u90E8\u5173\u7CFB\u5360\u5168\u90E8\u5173\u7CFB\u7684\u6BD4\u4F8B\uFF0C\u8D8A\u63A5\u8FD1 1 \u8D8A\u72EC\u7ACB\u3002",
+    "",
+    table(["\u805A\u7C7B", "\u6587\u4EF6", "\u5185\u805A", "\u4E3B\u8981\u76EE\u5F55", "\u5173\u952E\u8BCD", "\u4F9D\u8D56"], extras.clusters.map((cluster) => [cluster.label, cluster.files, cluster.cohesion, cluster.directories.slice(0, 2).map((dir) => dir.path).join("\u3001"), cluster.keywords.join(" "), cluster.dependsOn.slice(0, 3).map((item) => item.label ?? item.cluster).join("\u3001") || "\u2014"])),
+    "",
+    "### \u5BF9\u5916\u63D0\u4F9B\u6700\u591A\u7684\u7B26\u53F7",
+    "",
+    table(["\u7B26\u53F7", "\u88AB\u4F7F\u7528", "\u7B7E\u540D"], extras.hubs.map((hub) => ["`" + hub.id + "`", hub.usedBy, hub.signature ? "`" + hub.signature.slice(0, 120) + "`" : ""])),
+    "",
+    "## \u8D28\u91CF",
+    "",
+    "\u8D28\u91CF\u5206\u4ECE 100 \u8D77\uFF0C\u6309\u4E0B\u9762\u5404\u9879\u6263\u5206\uFF1B\u5206\u6570\u53EA\u7528\u4E8E\u540C\u4E00\u4E2A\u9879\u76EE\u524D\u540E\u5BF9\u6BD4\u3002",
+    "",
+    table(["\u68C0\u67E5\u9879", "\u7ED3\u679C", "\u7EA7\u522B", "\u6263\u5206"], quality.findings.map((finding) => [finding.title, finding.value, mark[finding.level], finding.penalty || "\u2014"])),
+    ""
+  ];
+  for (const finding of quality.findings.filter((item) => item.level !== "good" || item.items.length)) {
+    lines.push("### " + finding.title, "", finding.detail, "");
+    for (const item of finding.items.slice(0, 12)) lines.push("- `" + item.label + "`" + (item.note ? "\uFF08" + item.note + "\uFF09" : ""));
+    if (finding.items.length) lines.push("");
+  }
+  lines.push(
+    "## \u4F9D\u8D56",
+    "",
+    dependencies.note,
+    "",
+    "### \u5916\u90E8\u4F9D\u8D56",
+    "",
+    table(["\u5305", "\u7248\u672C", "\u7C7B\u578B", "\u5BFC\u5165\u5B83\u7684\u6587\u4EF6\u6570"], dependencies.packages.slice(0, 40).map((item) => [item.name, item.version || "\u2014", item.kind === "prod" ? "\u8FD0\u884C" : item.kind === "dev" ? "\u5F00\u53D1" : "\u540C\u4F34", item.files])),
+    "",
+    "- \u58F0\u660E\u4E86\u4F46\u6E90\u7801\u91CC\u6CA1\u6709\u5BFC\u5165\uFF1A" + (dependencies.unused.length ? dependencies.unused.map((name3) => "`" + name3 + "`").join("\u3001") : "\u65E0"),
+    "- \u5BFC\u5165\u4E86\u4F46\u6CA1\u6709\u58F0\u660E\uFF1A" + (dependencies.undeclared.length ? dependencies.undeclared.slice(0, 20).map((item) => "`" + item.name + "`\uFF08" + item.files + " \u4E2A\u6587\u4EF6\uFF09").join("\u3001") : "\u65E0"),
+    "",
+    "### \u5185\u90E8\u4F9D\u8D56",
+    "",
+    "\u88AB\u6700\u591A\u805A\u7C7B\u4F9D\u8D56\u7684\u662F\u5730\u57FA\uFF0C\u6539\u5B83\u6CE2\u53CA\u9762\u6700\u5927\uFF1A",
+    "",
+    table(["\u805A\u7C7B", "\u88AB\u591A\u5C11\u4E2A\u805A\u7C7B\u4F9D\u8D56", "\u5916\u90E8\u5F15\u7528\u6570"], dependencies.foundations.map((item) => [item.label, item.fanIn, item.inWeight])),
+    "",
+    "\u805A\u7C7B\u4E4B\u95F4\u6700\u91CD\u7684\u4F9D\u8D56\uFF1A",
+    "",
+    table(["\u4ECE", "\u5230", "\u5173\u7CFB\u6570"], dependencies.links.map((link) => [link.from, link.to, link.weight])),
+    "",
+    "## \u8FED\u4EE3\u60C5\u51B5",
+    "",
+    iteration.pace,
+    ""
+  );
+  if (iteration.available && iteration.commits) {
+    lines.push(
+      "\u63D0\u4EA4\u7C7B\u578B\uFF1A" + Object.entries(iteration.types).sort((a, b) => b[1] - a[1]).map(([type, count]) => type + " " + count).join("\u3001") + "\u3002",
+      "",
+      "### \u6539\u52A8\u6700\u9891\u7E41\u7684\u6587\u4EF6",
+      "",
+      table(["\u6587\u4EF6", "\u63D0\u4EA4\u6570", "\u8FD1 90 \u5929", "\u884C\u6570", "\u88AB\u5F15\u7528", "\u6240\u5728\u805A\u7C7B"], iteration.hotspots.map((item) => ["`" + item.file + "`", item.commits, item.recent, item.lines, item.usedBy, item.cluster ?? "\u2014"])),
+      "",
+      "### \u5404\u805A\u7C7B\u7684\u6D3B\u8DC3\u5EA6",
+      "",
+      table(["\u805A\u7C7B", "\u6539\u52A8\u6B21\u6570", "\u8FD1 90 \u5929", "\u6700\u8FD1\u6539\u52A8"], iteration.clusters.slice(0, 20).map((item) => [item.label, item.commits, item.recent, day(item.last)])),
+      "",
+      "### \u6700\u8FD1\u7684\u63D0\u4EA4",
+      "",
+      ...iteration.recent.slice(0, 15).map((commit) => "- " + day(commit.date) + " `" + commit.hash + "` " + commit.subject + "\uFF08" + commit.files + " \u4E2A\u6587\u4EF6\uFF09"),
+      ""
+    );
+  }
+  lines.push(
+    "### \u8FED\u4EE3\u65B9\u6848",
+    "",
+    iteration.plans.length ? table(["\u65B9\u6848", "\u6807\u9898", "\u521B\u5EFA", "\u529F\u80FD\u70B9", "\u6539\u52A8", "\u6B65\u9AA4", "\u5DF2\u6838\u5BF9"], iteration.plans.map((plan) => ["`docs/iterations/" + plan.slug + "`", plan.title, day(plan.createdAt), plan.features, plan.changes, plan.steps, plan.checked ? "\u662F" : "\u5426"])) : "`docs/iterations` \u4E0B\u8FD8\u6CA1\u6709\u8FED\u4EE3\u65B9\u6848\u3002",
+    "",
+    "## \u6539\u52A8\u96BE\u5EA6",
+    "",
+    difficulty.note,
+    "",
+    table(["\u805A\u7C7B", "\u6587\u4EF6", "\u4F18\u5316\u96BE\u5EA6", "\u8FED\u4EE3\u96BE\u5EA6", "\u4E3B\u8981\u539F\u56E0"], [...difficulty.clusters].sort((a, b) => b.refactor.score - a.refactor.score).map((cluster) => [cluster.label, cluster.files, cluster.refactor.level + "\uFF08" + cluster.refactor.score + "\uFF09", cluster.extend.level + "\uFF08" + cluster.extend.score + "\uFF09", [.../* @__PURE__ */ new Set([...cluster.refactor.reasons.slice(0, 2), ...cluster.extend.reasons.slice(0, 1)])].join("\uFF1B") || "\u7ED3\u6784\u7B80\u5355\u3001\u4F9D\u8D56\u5C11"])),
+    "",
+    "## \u5165\u53E3\u4E0E\u8DEF\u7531",
+    "",
+    extras.routes.length ? table(["\u8DEF\u5F84", "\u6807\u9898", "\u6587\u4EF6"], extras.routes.slice(0, 60).map((route) => [(route.kind === "api" ? "\u63A5\u53E3 " : "") + route.path, route.title ?? "\u2014", "`" + route.file + "`"])) + (extras.routes.length > 60 ? "\n\n\u5171 " + extras.routes.length + " \u6761\u8DEF\u7531\uFF0C\u8FD9\u91CC\u5217\u51FA\u524D 60 \u6761\uFF0C\u5B8C\u6574\u5217\u8868\u89C1 `project-map.json`\u3002" : "") : "\u6CA1\u6709\u8BC6\u522B\u51FA\u8DEF\u7531\u8868\u3002\u5165\u53E3\u6587\u4EF6\uFF1A" + (extras.entries.slice(0, 20).map((file) => "`" + file + "`").join("\u3001") || "\u65E0"),
+    ""
+  );
+  return lines.join("\n");
+}
 
 // studios/engineering/src/git.ts
 import { execFile } from "node:child_process";
@@ -5637,9 +5762,9 @@ var GraphEngine = class {
   }
   async readCache(path2) {
     try {
-      const cache2 = JSON.parse(await readFile3(join4(path2, "facts.json"), "utf8"));
-      if (cache2.engineVersion !== ENGINE_VERSION || !Array.isArray(cache2.files)) return /* @__PURE__ */ new Map();
-      return new Map(cache2.files.map((file) => [file.path, file]));
+      const cache3 = JSON.parse(await readFile3(join4(path2, "facts.json"), "utf8"));
+      if (cache3.engineVersion !== ENGINE_VERSION || !Array.isArray(cache3.files)) return /* @__PURE__ */ new Map();
+      return new Map(cache3.files.map((file) => [file.path, file]));
     } catch {
       return /* @__PURE__ */ new Map();
     }
@@ -5788,6 +5913,290 @@ var GraphEngine = class {
     await rm(folder.path, { recursive: true, force: true });
   }
 };
+
+// studios/engineering/src/graph/health.ts
+var isFileNode2 = (node) => node.kind === "file" || node.kind === "component";
+var percent = (part, whole) => whole ? Math.round(part / whole * 100) : 0;
+var clamp = (value) => Math.max(0, Math.min(1, value));
+var day2 = (iso) => iso ? iso.slice(0, 10) : "";
+var builtins = /* @__PURE__ */ new Set(["assert", "buffer", "child_process", "cluster", "crypto", "dgram", "dns", "events", "fs", "http", "http2", "https", "module", "net", "os", "path", "perf_hooks", "process", "querystring", "readline", "stream", "string_decoder", "timers", "tls", "tty", "url", "util", "v8", "vm", "worker_threads", "zlib", "electron"]);
+function packageName(source) {
+  if (!source || /^(node:|virtual:|[.~#/]|@\/|uni_modules\/)/.test(source) || source.includes(":")) return "";
+  const parts2 = source.split("/");
+  const name3 = source.startsWith("@") ? parts2.slice(0, 2).join("/") : parts2[0];
+  return source.startsWith("@") && parts2.length < 2 ? "" : name3;
+}
+var grade = (score) => score < 34 ? "\u4F4E" : score < 67 ? "\u4E2D" : "\u9AD8";
+function healthOf(index, history, manifest, plans = []) {
+  const graph = index.graph, views = viewsOf(index);
+  const files = graph.nodes.filter(isFileNode2);
+  const source = files.filter((node) => !isTest(node.id));
+  const tests = files.filter((node) => isTest(node.id));
+  const lines = files.reduce((sum, node) => sum + node.endLine, 0);
+  const fileIn = /* @__PURE__ */ new Map(), fileOut = /* @__PURE__ */ new Map();
+  const testedBy = /* @__PURE__ */ new Map();
+  for (const edge of graph.edges) {
+    const from = index.nodes.get(edge.from).file, to = index.nodes.get(edge.to).file;
+    if (from === to) continue;
+    fileOut.set(from, (fileOut.get(from) ?? 0) + 1);
+    fileIn.set(to, (fileIn.get(to) ?? 0) + 1);
+    if (isTest(from) && !isTest(to)) {
+      const set = testedBy.get(to);
+      if (set) set.add(from);
+      else testedBy.set(to, /* @__PURE__ */ new Set([from]));
+    }
+  }
+  const usedBy3 = (id) => (index.in.get(id) ?? []).filter((edge) => edge.kind !== "imports").length;
+  const findings = [];
+  const cycleFiles = new Set(views.cycles.flatMap((cycle) => cycle.files));
+  const largestCycle = Math.max(0, ...views.cycles.map((cycle) => cycle.size));
+  findings.push({
+    id: "cycles",
+    level: views.cycles.length === 0 ? "good" : largestCycle >= 6 || views.cycles.length >= 4 ? "risk" : "watch",
+    title: "\u5FAA\u73AF\u5BFC\u5165",
+    value: views.cycles.length ? views.cycles.length + " \u7EC4" : "\u6CA1\u6709",
+    penalty: views.cycles.length ? Math.min(20, views.cycles.length * 4 + largestCycle) : 0,
+    detail: views.cycles.length ? "\u6587\u4EF6\u4E4B\u95F4\u4E92\u76F8\u5BFC\u5165\uFF0C\u6700\u5927\u7684\u4E00\u7EC4\u6709 " + largestCycle + " \u4E2A\u6587\u4EF6\u3002\u5FAA\u73AF\u91CC\u7684\u6587\u4EF6\u6539\u4E00\u4E2A\u5C31\u53EF\u80FD\u7275\u52A8\u4E00\u5708\uFF0C\u521D\u59CB\u5316\u987A\u5E8F\u4E5F\u5BB9\u6613\u51FA\u95EE\u9898\u3002" : "\u6587\u4EF6\u4E4B\u95F4\u6CA1\u6709\u4E92\u76F8\u5BFC\u5165\u7684\u73AF\u3002",
+    items: views.cycles.slice(0, 8).map((cycle) => ({ label: cycle.path.join(" \u2192 "), note: cycle.size + " \u4E2A\u6587\u4EF6" }))
+  });
+  const topLevel = graph.nodes.filter((node) => !isFileNode2(node) && node.exported && node.parent === node.file && !isTest(node.file));
+  const unusedExports = topLevel.filter((node) => usedBy3(node.id) === 0 && !views.entries.has(node.file));
+  const unusedShare = percent(unusedExports.length, topLevel.length);
+  findings.push({
+    id: "unused-exports",
+    level: unusedShare >= 25 ? "risk" : unusedShare >= 10 ? "watch" : "good",
+    title: "\u6CA1\u6709\u88AB\u7528\u5230\u7684\u5BFC\u51FA",
+    value: unusedExports.length + " \u4E2A\uFF08" + unusedShare + "%\uFF09",
+    penalty: Math.min(15, Math.round(unusedShare * 0.4)),
+    detail: "\u5BFC\u51FA\u4E86\u4F46\u56FE\u8C31\u91CC\u627E\u4E0D\u5230\u4EFB\u4F55\u4F7F\u7528\u65B9\u7684\u51FD\u6570\u3001\u7C7B\u3001\u7C7B\u578B\u4E0E\u53D8\u91CF\uFF0C\u5360\u5168\u90E8\u9876\u5C42\u5BFC\u51FA\u7684 " + unusedShare + "%\u3002\u53EF\u80FD\u662F\u6B7B\u4EE3\u7801\uFF0C\u4E5F\u53EF\u80FD\u53EA\u88AB\u52A8\u6001\u8C03\u7528\u3001\u6A21\u677F\u5B57\u7B26\u4E32\u6216\u9879\u76EE\u5916\u90E8\u4F7F\u7528\uFF0C\u5220\u9664\u524D\u7528\u6587\u672C\u641C\u7D22\u786E\u8BA4\u3002",
+    items: unusedExports.sort((a, b) => b.endLine - b.line - (a.endLine - a.line)).slice(0, 20).map((node) => ({ label: node.id, note: node.kind + " \xB7 " + (node.endLine - node.line + 1) + " \u884C" }))
+  });
+  const orphanComponents = files.filter((node) => node.kind === "component" && !isTest(node.id) && !views.entries.has(node.id) && !fileIn.get(node.id));
+  const orphanFiles = files.filter((node) => node.kind === "file" && !isTest(node.id) && !views.entries.has(node.id) && !fileIn.get(node.id) && !fileOut.get(node.id));
+  const orphans = [...orphanComponents, ...orphanFiles];
+  findings.push({
+    id: "orphans",
+    level: orphans.length === 0 ? "good" : percent(orphans.length, source.length) >= 10 ? "risk" : "watch",
+    title: "\u6CA1\u6709\u88AB\u5F15\u7528\u7684\u6587\u4EF6",
+    value: orphans.length + " \u4E2A",
+    penalty: Math.min(10, Math.round(percent(orphans.length, source.length) * 0.5)),
+    detail: "\u4E0D\u662F\u9875\u9762\u6216\u5165\u53E3\u3001\u4E5F\u6CA1\u6709\u4EFB\u4F55\u6587\u4EF6\u5F15\u7528\u5B83\u7684\u7EC4\u4EF6\uFF08" + orphanComponents.length + " \u4E2A\uFF09\u548C\u4E0E\u5176\u4ED6\u6587\u4EF6\u6BEB\u65E0\u5173\u7CFB\u7684\u811A\u672C\uFF08" + orphanFiles.length + " \u4E2A\uFF09\u3002\u6309\u6846\u67B6\u7EA6\u5B9A\u81EA\u52A8\u6CE8\u518C\u3001\u6216\u53EA\u5728\u914D\u7F6E\u91CC\u5F15\u7528\u7684\u6587\u4EF6\u4F1A\u88AB\u8BEF\u5217\u3002",
+    items: orphans.sort((a, b) => b.endLine - a.endLine).slice(0, 20).map((node) => ({ label: node.id, note: node.endLine + " \u884C" }))
+  });
+  const LARGE_FILE = 500, BIG_SYMBOL = 80;
+  const largeFiles = source.filter((node) => node.endLine > LARGE_FILE).sort((a, b) => b.endLine - a.endLine);
+  findings.push({
+    id: "large-files",
+    level: percent(largeFiles.length, source.length) >= 8 ? "risk" : largeFiles.length ? "watch" : "good",
+    title: "\u8D85\u8FC7 " + LARGE_FILE + " \u884C\u7684\u6587\u4EF6",
+    value: largeFiles.length + " \u4E2A",
+    penalty: Math.min(15, Math.round(percent(largeFiles.length, source.length) * 1.2)),
+    detail: "\u5360\u6E90\u7801\u6587\u4EF6\u7684 " + percent(largeFiles.length, source.length) + "%\uFF08Vue \u5355\u6587\u4EF6\u7EC4\u4EF6\u7684\u6A21\u677F\u4E0E\u6837\u5F0F\u4E5F\u8BA1\u5165\u884C\u6570\uFF09\u3002\u6587\u4EF6\u8D8A\u5927\uFF0C\u4E00\u6B21\u6539\u52A8\u8981\u8BFB\u61C2\u7684\u4E0A\u4E0B\u6587\u8D8A\u591A\uFF0C\u591A\u4EBA\u540C\u65F6\u6539\u65F6\u4E5F\u8D8A\u5BB9\u6613\u51B2\u7A81\u3002",
+    items: largeFiles.slice(0, 15).map((node) => ({ label: node.id, note: node.endLine + " \u884C \xB7 \u88AB " + (fileIn.get(node.id) ?? 0) + " \u5904\u5F15\u7528" }))
+  });
+  const callables = graph.nodes.filter((node) => (node.kind === "function" || node.kind === "method") && !isTest(node.file));
+  const bigSymbols = callables.filter((node) => node.endLine - node.line + 1 > BIG_SYMBOL).sort((a, b) => b.endLine - b.line - (a.endLine - a.line));
+  findings.push({
+    id: "big-symbols",
+    level: percent(bigSymbols.length, callables.length) >= 5 ? "risk" : bigSymbols.length ? "watch" : "good",
+    title: "\u8D85\u8FC7 " + BIG_SYMBOL + " \u884C\u7684\u51FD\u6570\u4E0E\u65B9\u6CD5",
+    value: bigSymbols.length + " \u4E2A",
+    penalty: Math.min(10, Math.round(percent(bigSymbols.length, callables.length) * 1.5)),
+    detail: "\u5360\u5168\u90E8\u51FD\u6570\u4E0E\u65B9\u6CD5\u7684 " + percent(bigSymbols.length, callables.length) + "%\u3002\u957F\u51FD\u6570\u901A\u5E38\u540C\u65F6\u505A\u51E0\u4EF6\u4E8B\uFF0C\u662F\u62C6\u5206\u4E0E\u8865\u6D4B\u8BD5\u7684\u9996\u9009\u5BF9\u8C61\u3002",
+    items: bigSymbols.slice(0, 15).map((node) => ({ label: node.id, note: node.endLine - node.line + 1 + " \u884C \xB7 \u88AB\u7528 " + usedBy3(node.id) }))
+  });
+  const testedFiles = source.filter((node) => testedBy.has(node.id)).length;
+  const testShare = percent(testedFiles, source.length);
+  findings.push({
+    id: "tests",
+    level: tests.length === 0 ? "risk" : testShare < 10 ? "watch" : "good",
+    title: "\u6D4B\u8BD5",
+    value: tests.length ? tests.length + " \u4E2A\u6D4B\u8BD5\u6587\u4EF6" : "\u6CA1\u6709\u6D4B\u8BD5",
+    penalty: tests.length === 0 ? 20 : testShare < 5 ? 12 : testShare < 15 ? 6 : 0,
+    detail: tests.length ? "\u88AB\u6D4B\u8BD5\u6587\u4EF6\u76F4\u63A5\u5F15\u7528\u7684\u6E90\u7801\u6587\u4EF6\u6709 " + testedFiles + " \u4E2A\uFF0C\u5360 " + testShare + "%\u3002\u8FD9\u662F\u9759\u6001\u7684\u5F15\u7528\u5173\u7CFB\uFF0C\u4E0D\u662F\u884C\u8986\u76D6\u7387\u3002" : "\u6CA1\u6709\u627E\u5230\u6D4B\u8BD5\u6587\u4EF6\uFF08tests / __tests__ / e2e \u76EE\u5F55\u6216 .test / .spec \u540E\u7F00\uFF09\u3002\u6539\u52A8\u53EA\u80FD\u9760\u4EBA\u5DE5\u56DE\u5F52\u3002",
+    items: []
+  });
+  const hubs = graph.nodes.filter((node) => !isFileNode2(node) && !isTest(node.file)).map((node) => ({ node, count: usedBy3(node.id) })).filter((item) => item.count >= 20).sort((a, b) => b.count - a.count);
+  findings.push({
+    id: "hubs",
+    level: hubs.length ? "watch" : "good",
+    title: "\u88AB\u5927\u91CF\u4F7F\u7528\u7684\u7B26\u53F7",
+    value: hubs.length + " \u4E2A",
+    penalty: 0,
+    detail: "\u88AB 20 \u5904\u4EE5\u4E0A\u4F7F\u7528\u7684\u51FD\u6570\u3001\u7C7B\u4E0E\u53D8\u91CF\u3002\u5B83\u4EEC\u672C\u8EAB\u4E0D\u662F\u95EE\u9898\uFF0C\u4F46\u6539\u7B7E\u540D\u6216\u884C\u4E3A\u7684\u6CE2\u53CA\u9762\u6700\u5927\uFF0C\u52A8\u4E4B\u524D\u5148\u8DD1\u5F71\u54CD\u5206\u6790\u3002",
+    items: hubs.slice(0, 12).map((item) => ({ label: item.node.id, note: "\u88AB\u7528 " + item.count + " \u5904" }))
+  });
+  const inferredShare = percent(graph.stats.inferredEdges, graph.stats.edges);
+  findings.push({
+    id: "coverage",
+    level: graph.stats.errors > source.length * 0.05 || inferredShare >= 40 ? "watch" : "good",
+    title: "\u56FE\u8C31\u7684\u53EF\u4FE1\u5EA6",
+    value: inferredShare + "% \u4E3A\u63A8\u65AD",
+    penalty: Math.min(10, Math.round(percent(graph.stats.errors, files.length) * 0.8)) + (inferredShare >= 40 ? 3 : 0),
+    detail: graph.stats.edges + " \u6761\u5173\u7CFB\u91CC\u6709 " + graph.stats.inferredEdges + " \u6761\u6765\u81EA\u81EA\u52A8\u5BFC\u5165\u3001\u76EE\u5F55\u7EA6\u5B9A\u7B49\u63A8\u65AD\uFF0C\u4E0D\u662F import \u8BED\u53E5\u786E\u5B9A\u7684\uFF1B" + graph.stats.errors + " \u4E2A\u6587\u4EF6\u53EA\u89E3\u6790\u4E86\u4E00\u90E8\u5206\uFF0C" + graph.stats.skipped + " \u4E2A\u6587\u4EF6\uFF08\u6784\u5EFA\u4EA7\u7269\u3001\u538B\u7F29\u811A\u672C\u3001\u8D85\u5927\u6587\u4EF6\uFF09\u6CA1\u6709\u8FDB\u56FE\u8C31\u3002\u8FD9\u4E9B\u90E8\u5206\u7684\u7ED3\u8BBA\u8981\u6253\u5F00\u6587\u4EF6\u6838\u5BF9\u3002",
+    items: []
+  });
+  const score = Math.max(0, 100 - findings.reduce((sum, finding) => sum + finding.penalty, 0));
+  const quality = { score, grade: score >= 85 ? "A" : score >= 70 ? "B" : score >= 55 ? "C" : "D", findings };
+  const usage = /* @__PURE__ */ new Map();
+  for (const [name3, count] of Object.entries(graph.externals)) {
+    const pkg = packageName(name3);
+    if (pkg) usage.set(pkg, (usage.get(pkg) ?? 0) + count);
+  }
+  const declared = /* @__PURE__ */ new Map();
+  for (const [kind, group] of [["peer", manifest?.peerDependencies], ["dev", manifest?.devDependencies], ["prod", manifest?.dependencies]]) {
+    for (const [name3, version] of Object.entries(group ?? {})) declared.set(name3, { version, kind });
+  }
+  const packages = [...declared.entries()].map(([name3, info2]) => ({ name: name3, version: info2.version, kind: info2.kind, files: usage.get(name3) ?? 0 })).sort((a, b) => b.files - a.files || a.name.localeCompare(b.name));
+  const clusterLabels = new Map(views.clusters.map((cluster) => [cluster.id, cluster.label]));
+  const fanIn = /* @__PURE__ */ new Map(), fanOut = /* @__PURE__ */ new Map();
+  for (const link of views.links) {
+    const into = fanIn.get(link.to) ?? { clusters: 0, weight: 0 };
+    into.clusters += 1;
+    into.weight += link.weight;
+    fanIn.set(link.to, into);
+    const out2 = fanOut.get(link.from) ?? { clusters: 0, weight: 0 };
+    out2.clusters += 1;
+    out2.weight += link.weight;
+    fanOut.set(link.from, out2);
+  }
+  const dependencies = {
+    manifest: !!manifest,
+    packages,
+    unused: packages.filter((item) => item.kind === "prod" && item.files === 0).map((item) => item.name),
+    undeclared: manifest ? [...usage.entries()].filter(([name3]) => !declared.has(name3) && !builtins.has(name3)).map(([name3, count]) => ({ name: name3, files: count })).sort((a, b) => b.files - a.files) : [],
+    links: views.links.slice(0, 12).map((link) => ({ from: clusterLabels.get(link.from) ?? link.from, to: clusterLabels.get(link.to) ?? link.to, weight: link.weight })),
+    foundations: views.clusters.map((cluster) => ({ id: cluster.id, label: cluster.label, fanIn: fanIn.get(cluster.id)?.clusters ?? 0, inWeight: fanIn.get(cluster.id)?.weight ?? 0 })).filter((item) => item.fanIn > 0).sort((a, b) => b.fanIn - a.fanIn || b.inWeight - a.inWeight).slice(0, 8),
+    note: manifest ? "\u53EA\u8BFB\u4E86\u6839\u76EE\u5F55\u7684 package.json\uFF1B\u300C\u672A\u4F7F\u7528\u300D\u6307 TypeScript / JavaScript / Vue \u6E90\u7801\u91CC\u6CA1\u6709\u5BFC\u5165\uFF0C\u53EA\u5728\u914D\u7F6E\u6587\u4EF6\u3001\u6837\u5F0F\u3001\u547D\u4EE4\u884C\u6216\u6784\u5EFA\u811A\u672C\u91CC\u7528\u5230\u7684\u5305\u4F1A\u88AB\u8BEF\u5217\uFF1B\u5B50\u5305\u5404\u81EA\u7684 package.json \u6CA1\u6709\u8BA1\u5165\uFF0C\u5B50\u5305\u91CC\u58F0\u660E\u7684\u4F9D\u8D56\u4F1A\u51FA\u73B0\u5728\u300C\u672A\u58F0\u660E\u300D\u91CC\u3002" : "\u6839\u76EE\u5F55\u6CA1\u6709 package.json\uFF0C\u53EA\u80FD\u5217\u51FA\u6E90\u7801\u91CC\u5BFC\u5165\u4E86\u54EA\u4E9B\u5916\u90E8\u5305\u3002"
+  };
+  if (!manifest) dependencies.packages = [...usage.entries()].filter(([name3]) => !builtins.has(name3)).map(([name3, count]) => ({ name: name3, version: "", kind: "prod", files: count })).sort((a, b) => b.files - a.files);
+  const clusterFiles = /* @__PURE__ */ new Map();
+  for (const node of files) {
+    const id = views.clusterOf.get(node.id);
+    if (!id) continue;
+    const list3 = clusterFiles.get(id);
+    if (list3) list3.push(node);
+    else clusterFiles.set(id, [node]);
+  }
+  const churnOf = (id) => {
+    let commits = 0, recent = 0, last = "";
+    for (const node of clusterFiles.get(id) ?? []) {
+      const churn = history.files.get(node.id);
+      if (!churn) continue;
+      commits += churn.commits;
+      recent += churn.recent;
+      if (churn.last > last) last = churn.last;
+    }
+    return { commits, recent, last };
+  };
+  const maxRecent = Math.max(1, ...views.clusters.map((cluster) => churnOf(cluster.id).recent));
+  const maxFanIn = Math.max(1, ...views.clusters.map((cluster) => fanIn.get(cluster.id)?.clusters ?? 0));
+  const maxFanOut = Math.max(1, ...views.clusters.map((cluster) => fanOut.get(cluster.id)?.clusters ?? 0));
+  const clusters = views.clusters.map((cluster) => {
+    const members = clusterFiles.get(cluster.id) ?? [];
+    const memberIds = new Set(members.map((node) => node.id));
+    const totalLines = members.reduce((sum, node) => sum + node.endLine, 0);
+    const inCycles = members.filter((node) => cycleFiles.has(node.id)).length;
+    const testers = new Set(members.flatMap((node) => [...testedBy.get(node.id) ?? []]));
+    const big = bigSymbols.filter((node) => memberIds.has(node.file)).length;
+    const churn = churnOf(cluster.id);
+    const into = fanIn.get(cluster.id) ?? { clusters: 0, weight: 0 }, out2 = fanOut.get(cluster.id) ?? { clusters: 0, weight: 0 };
+    const average = members.length ? totalLines / members.length : 0;
+    const factors = {
+      fanIn: clamp(into.clusters / Math.max(4, maxFanIn)),
+      fanOut: clamp(out2.clusters / Math.max(4, maxFanOut)),
+      size: clamp(members.length / 60),
+      complexity: clamp(average / 400 * 0.6 + big / Math.max(4, members.length * 0.5) * 0.4),
+      cycles: clamp(inCycles / Math.max(3, members.length * 0.3)),
+      untested: testers.size ? 0 : 1,
+      scattered: clamp(1 - cluster.cohesion),
+      churn: history.available ? clamp(churn.recent / maxRecent) : 0
+    };
+    const reason = (key) => ({
+      fanIn: "\u88AB " + into.clusters + " \u4E2A\u805A\u7C7B\u4F9D\u8D56\uFF08\u5916\u90E8\u5F15\u7528 " + into.weight + " \u5904\uFF09\uFF0C\u6539\u63A5\u53E3\u6CE2\u53CA\u9762\u5927",
+      fanOut: "\u4F9D\u8D56 " + out2.clusters + " \u4E2A\u5176\u4ED6\u805A\u7C7B\uFF08\u5BF9\u5916\u5F15\u7528 " + out2.weight + " \u5904\uFF09\uFF0C\u52A0\u529F\u80FD\u8981\u540C\u65F6\u7406\u89E3\u591A\u5757\u4EE3\u7801",
+      size: members.length + " \u4E2A\u6587\u4EF6\u3001" + totalLines + " \u884C\uFF0C\u4F53\u91CF\u5927",
+      complexity: "\u5E73\u5747\u6BCF\u4E2A\u6587\u4EF6 " + Math.round(average) + " \u884C" + (big ? "\uFF0C\u6709 " + big + " \u4E2A\u8D85\u8FC7 " + BIG_SYMBOL + " \u884C\u7684\u51FD\u6570" : ""),
+      cycles: inCycles + " \u4E2A\u6587\u4EF6\u5377\u5728\u5FAA\u73AF\u5BFC\u5165\u91CC",
+      untested: "\u6CA1\u6709\u6D4B\u8BD5\u6587\u4EF6\u76F4\u63A5\u5F15\u7528\u5B83\uFF0C\u6539\u52A8\u7F3A\u5C11\u81EA\u52A8\u56DE\u5F52",
+      scattered: "\u5185\u805A\u5EA6 " + cluster.cohesion + "\uFF0C\u4E00\u534A\u4EE5\u4E0A\u7684\u5173\u7CFB\u6307\u5411\u805A\u7C7B\u5916\u90E8",
+      churn: "\u6700\u8FD1 90 \u5929\u5176\u4E2D\u7684\u6587\u4EF6\u88AB\u6539\u52A8 " + churn.recent + " \u6B21\uFF0C\u6B63\u5728\u9891\u7E41\u53D8\u5316"
+    })[key];
+    const assess = (weights) => {
+      const parts2 = Object.entries(weights).map(([key, weight]) => ({ key, value: factors[key] * weight }));
+      const total = Math.round(parts2.reduce((sum, part) => sum + part.value, 0) * 100);
+      const notable = parts2.filter((part) => part.value >= 0.06).sort((a, b) => b.value - a.value);
+      const specific = tests.length ? notable : notable.filter((part) => part.key !== "untested");
+      return { score: total, level: grade(total), reasons: (specific.length ? specific : notable).slice(0, 3).map((part) => reason(part.key)) };
+    };
+    return {
+      id: cluster.id,
+      label: cluster.label,
+      files: members.length,
+      symbols: cluster.symbols,
+      lines: totalLines,
+      cohesion: cluster.cohesion,
+      fanIn: into.clusters,
+      fanOut: out2.clusters,
+      inWeight: into.weight,
+      outWeight: out2.weight,
+      cycleFiles: inCycles,
+      testFiles: testers.size,
+      bigSymbols: big,
+      commits: churn.commits,
+      recentCommits: churn.recent,
+      ...churn.last ? { lastChange: churn.last } : {},
+      // 优化（重构）难在「牵一发动全身」：被依赖多、有循环、体量大、没有测试兜底。
+      refactor: assess({ fanIn: 0.3, cycles: 0.2, untested: 0.2, size: 0.15, complexity: 0.15 }),
+      // 迭代（加功能）难在「要懂的东西多」：依赖面广、边界不清、函数长、正被频繁改动。
+      extend: assess({ fanOut: 0.25, scattered: 0.2, complexity: 0.2, churn: 0.15, untested: 0.1, size: 0.1 })
+    };
+  });
+  const recentWeeks = history.weeks.slice(-8), activeWeeks = recentWeeks.filter((week) => week.commits > 0).length;
+  const perWeek = recentWeeks.length ? Math.round(recentWeeks.reduce((sum, week) => sum + week.commits, 0) / recentWeeks.length * 10) / 10 : 0;
+  const pace = !history.available ? "\u4E0D\u662F Git \u4ED3\u5E93\uFF0C\u8BFB\u4E0D\u5230\u63D0\u4EA4\u5386\u53F2\u3002" : history.commits === 0 ? "\u6700\u8FD1 " + history.months + " \u4E2A\u6708\u6CA1\u6709\u63D0\u4EA4\u3002" : "\u6700\u8FD1 " + history.months + " \u4E2A\u6708 " + history.commits + " \u6B21\u63D0\u4EA4\u3001" + history.authors + " \u4F4D\u63D0\u4EA4\u8005\uFF1B\u6700\u8FD1 8 \u5468\u6709 " + activeWeeks + " \u5468\u6709\u63D0\u4EA4\uFF0C\u5E73\u5747\u6BCF\u5468 " + perWeek + " \u6B21\uFF0C\u6700\u8FD1\u4E00\u6B21\u5728 " + day2(history.last) + "\u3002";
+  const hotspots = [...history.files.entries()].filter(([file]) => {
+    const node = index.nodes.get(file);
+    return !!node && isFileNode2(node) && !isTest(file);
+  }).map(([file, churn]) => ({ file, commits: churn.commits, recent: churn.recent, lines: index.nodes.get(file).endLine, usedBy: fileIn.get(file) ?? 0, ...views.clusterOf.get(file) ? { cluster: clusterLabels.get(views.clusterOf.get(file)) } : {} })).sort((a, b) => b.commits * Math.log2(b.lines + 2) - a.commits * Math.log2(a.lines + 2)).slice(0, 15);
+  const iteration = {
+    available: history.available,
+    months: history.months,
+    commits: history.commits,
+    authors: history.authors,
+    ...history.first ? { first: history.first } : {},
+    ...history.last ? { last: history.last } : {},
+    weeks: history.weeks,
+    types: history.types,
+    pace,
+    hotspots,
+    clusters: clusters.map((cluster) => ({ id: cluster.id, label: cluster.label, commits: cluster.commits, recent: cluster.recentCommits, ...cluster.lastChange ? { last: cluster.lastChange } : {} })).sort((a, b) => b.recent - a.recent || b.commits - a.commits),
+    recent: history.recent.slice(0, 25).map((commit) => ({ hash: commit.hash, date: commit.date, subject: commit.subject, type: commit.type, files: commit.files.length })),
+    plans
+  };
+  const highlights = [];
+  for (const finding of findings.filter((item) => item.level === "risk")) highlights.push({ level: "risk", section: "quality", text: finding.title + "\uFF1A" + finding.value + "\u3002" + finding.detail.split("\u3002")[0] + "\u3002" });
+  if (dependencies.unused.length) highlights.push({ level: "watch", section: "dependencies", text: dependencies.unused.length + " \u4E2A\u58F0\u660E\u7684\u4F9D\u8D56\u5728\u6E90\u7801\u91CC\u6CA1\u6709\u5BFC\u5165\uFF1A" + dependencies.unused.slice(0, 5).join("\u3001") + (dependencies.unused.length > 5 ? " \u7B49" : "") + "\u3002" });
+  if (dependencies.undeclared.length) highlights.push({ level: "watch", section: "dependencies", text: dependencies.undeclared.length + " \u4E2A\u5BFC\u5165\u7684\u5305\u6CA1\u6709\u5728\u6839\u76EE\u5F55 package.json \u91CC\u58F0\u660E\uFF1A" + dependencies.undeclared.slice(0, 5).map((item) => item.name).join("\u3001") + (dependencies.undeclared.length > 5 ? " \u7B49" : "") + "\u3002" });
+  const hardest = [...clusters].sort((a, b) => b.refactor.score - a.refactor.score)[0];
+  if (hardest && hardest.refactor.level !== "\u4F4E") highlights.push({ level: hardest.refactor.level === "\u9AD8" ? "risk" : "watch", section: "difficulty", text: "\u6700\u96BE\u52A8\u7684\u805A\u7C7B\u662F\u300C" + hardest.label + "\u300D\uFF08\u4F18\u5316\u96BE\u5EA6" + hardest.refactor.level + "\uFF09\uFF1A" + hardest.refactor.reasons.slice(0, 2).join("\uFF1B") + "\u3002" });
+  const hottest = hotspots[0];
+  if (hottest && hottest.commits >= 5) highlights.push({ level: "watch", section: "iteration", text: "\u6539\u52A8\u6700\u9891\u7E41\u7684\u6587\u4EF6\u662F " + hottest.file + "\uFF1A" + hottest.commits + " \u6B21\u63D0\u4EA4\u3001" + hottest.lines + " \u884C" + (hottest.usedBy ? "\u3001\u88AB " + hottest.usedBy + " \u5904\u5F15\u7528" : "") + "\u3002" });
+  for (const finding of findings.filter((item) => item.level === "watch" && item.penalty >= 5)) highlights.push({ level: "watch", section: "quality", text: finding.title + "\uFF1A" + finding.value + "\u3002" });
+  const routes = graph.routes ?? [];
+  return {
+    schemaVersion: 1,
+    root: graph.root,
+    commit: graph.commit,
+    builtAt: graph.builtAt,
+    scale: { files: files.length, symbols: graph.stats.symbols, lines, languages: graph.stats.languages, clusters: views.clusters.length, scatteredFiles: views.scattered, pages: routes.filter((route) => route.kind === "page").length, apis: routes.filter((route) => route.kind === "api").length, entries: views.entries.size, testFiles: tests.length, relations: graph.stats.edges, inferredRelations: graph.stats.inferredEdges },
+    quality,
+    dependencies,
+    iteration,
+    difficulty: { note: "\u96BE\u5EA6\u662F\u6309\u7ED3\u6784\u4E0E\u63D0\u4EA4\u8BB0\u5F55\u4F30\u7B97\u7684\u76F8\u5BF9\u503C\uFF0C\u7528\u6765\u6392\u5148\u540E\uFF0C\u4E0D\u662F\u5DE5\u65F6\u3002\u4F18\u5316\u96BE\u5EA6\u770B\u300C\u7275\u4E00\u53D1\u52A8\u5168\u8EAB\u300D\u7684\u7A0B\u5EA6\uFF1A\u88AB\u591A\u5C11\u805A\u7C7B\u4F9D\u8D56\u3001\u6709\u6CA1\u6709\u5FAA\u73AF\u5BFC\u5165\u3001\u6709\u6CA1\u6709\u6D4B\u8BD5\u515C\u5E95\u3001\u4F53\u91CF\u4E0E\u51FD\u6570\u957F\u5EA6\uFF1B\u8FED\u4EE3\u96BE\u5EA6\u770B\u300C\u52A0\u529F\u80FD\u8981\u61C2\u591A\u5C11\u4E1C\u897F\u300D\uFF1A\u4F9D\u8D56\u9762\u3001\u8FB9\u754C\u662F\u5426\u6E05\u695A\u3001\u51FD\u6570\u957F\u5EA6\u3001\u6700\u8FD1\u662F\u5426\u5728\u9891\u7E41\u6539\u52A8\u3002" + (tests.length ? "" : "\u9879\u76EE\u6CA1\u6709\u6D4B\u8BD5\uFF0C\u6240\u6709\u805A\u7C7B\u7684\u96BE\u5EA6\u90FD\u56E0\u6B64\u4E0A\u8C03\u4E86\u4E00\u6863\u5DE6\u53F3\uFF1B\u4E0B\u9762\u7684\u539F\u56E0\u53EA\u5217\u5404\u805A\u7C7B\u81EA\u5DF1\u7684\u7279\u70B9\u3002"), clusters },
+    highlights: highlights.slice(0, 8)
+  };
+}
 
 // studios/engineering/src/graph/present.ts
 var location = (index, id) => {
@@ -6065,7 +6474,7 @@ async function validatePlan(index, plan, exists3) {
 var actionLabels = { add: "\u65B0\u589E", modify: "\u4FEE\u6539", remove: "\u5220\u9664" };
 var kindLabels = { new: "\u65B0\u589E", change: "\u4FEE\u6539", remove: "\u4E0B\u7EBF" };
 var riskLabels = { LOW: "\u4F4E", MEDIUM: "\u4E2D", HIGH: "\u9AD8" };
-var cell = (text2) => text2.replace(/\|/g, "\\|").replace(/\n+/g, "<br>");
+var cell2 = (text2) => text2.replace(/\|/g, "\\|").replace(/\n+/g, "<br>");
 var code = (text2) => "```ts\n" + text2 + "\n```";
 function renderPlan(plan, resolved, meta) {
   const impacts = resolved.filter((item) => item.impact);
@@ -6083,7 +6492,7 @@ function renderPlan(plan, resolved, meta) {
     "",
     "| \u7F16\u53F7 | \u529F\u80FD\u70B9 | \u7C7B\u578B | \u9A8C\u6536\u6807\u51C6 |",
     "|---|---|---|---|",
-    ...plan.features.map((feature) => "| " + feature.id + " | " + cell(feature.title) + " | " + kindLabels[feature.kind] + " | " + cell(feature.acceptance.map((item, position) => position + 1 + ". " + item).join("\n")) + " |"),
+    ...plan.features.map((feature) => "| " + feature.id + " | " + cell2(feature.title) + " | " + kindLabels[feature.kind] + " | " + cell2(feature.acceptance.map((item, position) => position + 1 + ". " + item).join("\n")) + " |"),
     ""
   ];
   for (const feature of plan.features.filter((item) => item.description || item.source)) {
@@ -6100,7 +6509,7 @@ function renderPlan(plan, resolved, meta) {
     lines.push(
       "| \u6539\u52A8\u76EE\u6807 | \u98CE\u9669 | \u76F4\u63A5\u4F9D\u8D56 | \u95F4\u63A5\u4F9D\u8D56 | \u9700\u56DE\u5F52 | \u6D89\u53CA\u6A21\u5757 |",
       "|---|---|---|---|---|---|",
-      ...impacts.map((item) => "| `" + item.change.target + "` | " + riskLabels[item.impact.risk] + " | " + item.impact.summary.direct + " | " + item.impact.summary.indirect + " | " + item.impact.summary.regression + " | " + cell(item.impact.summary.modules.join("\u3001") || "\u2014") + " |"),
+      ...impacts.map((item) => "| `" + item.change.target + "` | " + riskLabels[item.impact.risk] + " | " + item.impact.summary.direct + " | " + item.impact.summary.indirect + " | " + item.impact.summary.regression + " | " + cell2(item.impact.summary.modules.join("\u3001") || "\u2014") + " |"),
       ""
     );
     for (const item of impacts) {
@@ -6128,10 +6537,10 @@ function renderPlan(plan, resolved, meta) {
     if (item.node?.component) lines.push("\u73B0\u6709\u7EC4\u4EF6\u63A5\u53E3\uFF1A", "", code(Object.entries(item.node.component).map(([key, value]) => key + ": " + (Array.isArray(value) ? value.join("; ") : value)).join("\n")), "");
     if (change.signature) lines.push(change.action === "add" ? "\u7B7E\u540D\uFF1A" : "\u6539\u540E\u7B7E\u540D\uFF1A", "", code(change.signature), "");
     else if (change.action === "modify" && item.node?.signature) lines.push("\u7B7E\u540D\u4E0D\u53D8\u3002", "");
-    if (change.params.length) lines.push("| \u53C2\u6570 | \u7C7B\u578B | \u5FC5\u586B | \u9ED8\u8BA4\u503C | \u8BF4\u660E |", "|---|---|---|---|---|", ...change.params.map((param) => "| `" + param.name + "` | `" + cell(param.type) + "` | " + (param.required ? "\u662F" : "\u5426") + " | " + (param.defaultValue ? "`" + cell(param.defaultValue) + "`" : "\u2014") + " | " + cell(param.description) + " |"), "");
+    if (change.params.length) lines.push("| \u53C2\u6570 | \u7C7B\u578B | \u5FC5\u586B | \u9ED8\u8BA4\u503C | \u8BF4\u660E |", "|---|---|---|---|---|", ...change.params.map((param) => "| `" + param.name + "` | `" + cell2(param.type) + "` | " + (param.required ? "\u662F" : "\u5426") + " | " + (param.defaultValue ? "`" + cell2(param.defaultValue) + "`" : "\u2014") + " | " + cell2(param.description) + " |"), "");
     if (change.returns) lines.push("\u8FD4\u56DE\u503C\uFF1A" + change.returns, "");
-    if (change.events.length) lines.push("| \u4E8B\u4EF6 | \u8F7D\u8377 | \u8BF4\u660E |", "|---|---|---|", ...change.events.map((event) => "| `" + event.name + "` | " + (event.payload ? "`" + cell(event.payload) + "`" : "\u2014") + " | " + cell(event.description || "\u2014") + " |"), "");
-    if (change.slots.length) lines.push("| \u63D2\u69FD | \u8BF4\u660E |", "|---|---|", ...change.slots.map((slot) => "| `" + slot.name + "` | " + cell(slot.description || "\u2014") + " |"), "");
+    if (change.events.length) lines.push("| \u4E8B\u4EF6 | \u8F7D\u8377 | \u8BF4\u660E |", "|---|---|---|", ...change.events.map((event) => "| `" + event.name + "` | " + (event.payload ? "`" + cell2(event.payload) + "`" : "\u2014") + " | " + cell2(event.description || "\u2014") + " |"), "");
+    if (change.slots.length) lines.push("| \u63D2\u69FD | \u8BF4\u660E |", "|---|---|", ...change.slots.map((slot) => "| `" + slot.name + "` | " + cell2(slot.description || "\u2014") + " |"), "");
     if (change.compatibility) lines.push("\u517C\u5BB9\u6027\uFF1A" + change.compatibility, "");
   }
   if (plan.openQuestions.length) lines.push("## \u4E94\u3001\u5F85\u786E\u8BA4", "", ...plan.openQuestions.map((question) => "- " + question), "");
@@ -6177,6 +6586,83 @@ async function checkPlan(index, saved, changes, exists3) {
   return { ok: issues.length === 0, slug: plan.slug, implemented: done.length, total: plan.changes.length, changedFiles: changes ? changed.size : void 0, issues, warnings };
 }
 
+// studios/engineering/src/history.ts
+var RECENT_DAYS = 90;
+var RECENT_COMMITS = 40;
+var empty = (months) => ({ available: false, months, commits: 0, authors: 0, weeks: [], types: {}, files: /* @__PURE__ */ new Map(), recent: [] });
+function renamedPath(path2) {
+  const braces = /^(.*)\{(.*) => (.*)\}(.*)$/.exec(path2);
+  if (braces) return (braces[1] + braces[3] + braces[4]).replace(/\/\//g, "/");
+  const arrow = path2.indexOf(" => ");
+  return arrow === -1 ? path2 : path2.slice(arrow + 4);
+}
+function commitType(subject) {
+  const match = /^(feat|fix|refactor|perf|docs|test|chore|style|build|ci|release|revert)(?:\([^)]*\))?!?[:：]/i.exec(subject.trim());
+  return match ? match[1].toLowerCase() : "other";
+}
+function weekOf(time) {
+  const date = new Date(time);
+  const day3 = (date.getUTCDay() + 6) % 7;
+  date.setUTCDate(date.getUTCDate() - day3);
+  return date.toISOString().slice(0, 10);
+}
+function parseHistory(output, months, now = Date.now()) {
+  const history = empty(months);
+  history.available = true;
+  const authors = /* @__PURE__ */ new Set();
+  const weekly = /* @__PURE__ */ new Map();
+  const recentSince = now - RECENT_DAYS * 864e5;
+  for (const record2 of output.split("").slice(1)) {
+    const lines = record2.split("\n");
+    const [hash, date, author, ...subjectParts] = lines[0].split("");
+    if (!hash || !date) continue;
+    const subject = subjectParts.join(""), time = Date.parse(date);
+    if (!Number.isFinite(time)) continue;
+    const files = [];
+    for (const line of lines.slice(1)) {
+      const stat2 = /^(\d+|-)\t(\d+|-)\t(.+)$/.exec(line);
+      if (!stat2) continue;
+      const file = renamedPath(stat2[3]);
+      files.push(file);
+      const churn = history.files.get(file) ?? { commits: 0, added: 0, removed: 0, last: date, recent: 0 };
+      churn.commits += 1;
+      churn.added += stat2[1] === "-" ? 0 : Number(stat2[1]);
+      churn.removed += stat2[2] === "-" ? 0 : Number(stat2[2]);
+      if (date > churn.last) churn.last = date;
+      if (time >= recentSince) churn.recent += 1;
+      history.files.set(file, churn);
+    }
+    history.commits += 1;
+    authors.add(author);
+    const type = commitType(subject);
+    history.types[type] = (history.types[type] ?? 0) + 1;
+    weekly.set(weekOf(time), (weekly.get(weekOf(time)) ?? 0) + 1);
+    if (!history.last || date > history.last) history.last = date;
+    if (!history.first || date < history.first) history.first = date;
+    if (history.recent.length < RECENT_COMMITS) history.recent.push({ hash: hash.slice(0, 10), date, subject: subject.slice(0, 160), type, files });
+  }
+  history.authors = authors.size;
+  const monday = Date.parse(weekOf(now) + "T00:00:00Z");
+  for (let offset = 25; offset >= 0; offset -= 1) {
+    const week = new Date(monday - offset * 7 * 864e5).toISOString().slice(0, 10);
+    history.weeks.push({ week, commits: weekly.get(week) ?? 0 });
+  }
+  return history;
+}
+var cache2 = /* @__PURE__ */ new Map();
+async function readHistory(root, commit, months = 12, signal) {
+  if (!commit) return empty(months);
+  const key = root + "\0" + commit + "\0" + months;
+  const cached = cache2.get(key);
+  if (cached) return cached;
+  const output = await git(root, ["log", "--since=" + months + ".months", "--no-merges", "--numstat", "--relative", "--date=iso-strict", "--format=%x01%H%x02%ad%x02%ae%x02%s"], signal);
+  if (output === void 0) return empty(months);
+  const history = parseHistory(output, months);
+  if (cache2.size > 20) cache2.clear();
+  cache2.set(key, history);
+  return history;
+}
+
 // studios/engineering/src/project.ts
 import { access as access2, readFile as readFile4, readdir as readdir3, realpath as realpath2 } from "node:fs/promises";
 import { isAbsolute as isAbsolute2, join as join5 } from "node:path";
@@ -6218,6 +6704,34 @@ async function inspectProject(input) {
   }
   return { root, name: typeof pkg.name === "string" ? pkg.name : root.split(/[\\/]/).pop() ?? root, frameworks: frameworkPackages.filter(([name3]) => name3 in dependencies).map(([, label]) => label), packageManager, scripts, conventions, iterations };
 }
+var versions = (value) => value && typeof value === "object" && !Array.isArray(value) ? Object.fromEntries(Object.entries(value).filter((entry) => typeof entry[1] === "string")) : {};
+async function readManifest(root) {
+  try {
+    const pkg = object(JSON.parse(await readFile4(join5(root, "package.json"), "utf8")));
+    return { dependencies: versions(pkg.dependencies), devDependencies: versions(pkg.devDependencies), peerDependencies: versions(pkg.peerDependencies) };
+  } catch {
+    return void 0;
+  }
+}
+async function readPlans(root) {
+  let names;
+  try {
+    names = (await readdir3(join5(root, "docs/iterations"), { withFileTypes: true })).filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
+  } catch {
+    return [];
+  }
+  const plans = [];
+  for (const slug of names.slice(-50)) {
+    try {
+      const saved = object(JSON.parse(await readFile4(join5(root, "docs/iterations", slug, "iteration.json"), "utf8")));
+      const plan = object(saved.plan);
+      const count = (value) => Array.isArray(value) ? value.length : 0;
+      plans.push({ slug, title: typeof plan.title === "string" ? plan.title : slug, createdAt: typeof saved.createdAt === "string" ? saved.createdAt : "", features: count(plan.features), changes: count(plan.changes), steps: count(plan.steps), checked: await exists2(join5(root, "docs/iterations", slug, "check-report.json")) });
+    } catch {
+    }
+  }
+  return plans.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
 
 // studios/engineering/src/prompt.ts
 var taskLabels = { graph: "\u5EFA\u7ACB\u77E5\u8BC6\u56FE\u8C31", analyze: "\u5206\u6790\u9700\u6C42\u6587\u6863", impact: "\u5F71\u54CD\u5206\u6790", implement: "\u6309\u65B9\u6848\u5B9E\u73B0", review: "\u8BC4\u5BA1\u6539\u52A8" };
@@ -6229,7 +6743,7 @@ var taskMethods = {
   review: ["eng-code-review", "eng-verify-before-done"]
 };
 var principlesSummary = "\u5199\u3001\u6539\u3001\u8BC4\u5BA1\u4EE3\u7801\u65F6\u9075\u5B88\u56DB\u6761\u51C6\u5219\uFF1A\u4E00\u3001\u5148\u60F3\u6E05\u695A\u518D\u52A8\u624B\uFF0C\u6709\u4E0D\u786E\u5B9A\u7684\u524D\u63D0\u5C31\u8BF4\u51FA\u6765\uFF0C\u4E0D\u6084\u6084\u66FF\u7528\u6237\u505A\u9009\u62E9\uFF1B\u4E8C\u3001\u7B80\u5355\u4F18\u5148\uFF0C\u53EA\u5199\u89E3\u51B3\u95EE\u9898\u6240\u9700\u7684\u6700\u5C11\u4EE3\u7801\uFF0C\u4E0D\u505A\u731C\u6D4B\u6027\u8BBE\u8BA1\uFF1B\u4E09\u3001\u53EA\u6539\u5FC5\u987B\u6539\u7684\uFF0C\u4E0D\u987A\u624B\u91CD\u6784\u6216\u8C03\u6574\u65E0\u5173\u4EE3\u7801\uFF0C\u53EA\u6E05\u7406\u81EA\u5DF1\u9020\u6210\u7684\u9057\u7559\uFF1B\u56DB\u3001\u4EE5\u53EF\u9A8C\u8BC1\u7684\u76EE\u6807\u9A71\u52A8\uFF0C\u5148\u5B9A\u597D\u600E\u4E48\u9A8C\u8BC1\uFF0C\u5B9E\u9645\u8FD0\u884C\u5E76\u770B\u5230\u7ED3\u679C\u4E4B\u540E\u624D\u8BF4\u5B8C\u6210\u3002\u7EC6\u5219\u89C1\u6280\u80FD eng-coding-principles\u3002";
-var workspaceInstructions = "\u7528\u6237\u901A\u8FC7 @\u5DE5\u4F5C\u5BA4:engineering \u6216 @\u7814\u53D1\u5DE5\u4F5C\u5BA4 \u6307\u5B9A\u7814\u53D1\u5DE5\u4F5C\u5BA4\u3002\u5EFA\u7ACB\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\u3001\u6839\u636E\u9700\u6C42\u6587\u6863\u505A\u8FED\u4EE3\u65B9\u6848\u3001\u5206\u6790\u6539\u52A8\u5F71\u54CD\u3001\u6309\u65B9\u6848\u5B9E\u73B0\u3001\u8BC4\u5BA1\u6539\u52A8\u65F6\uFF0C\u5148\u8C03\u7528 eng_workspace\uFF0Ctask \u5206\u522B\u4E3A graph\u3001analyze\u3001impact\u3001implement\u3001review\uFF0Crequest \u4FDD\u7559\u7528\u6237\u539F\u6587\u3002\u8BE5\u5DE5\u5177\u8FD4\u56DE\u5F53\u524D\u6267\u884C\u4F1A\u8BDD\u7684\u771F\u5B9E\u5DE5\u4F5C\u533A\u3001\u56FE\u8C31\u72B6\u6001\u548C\u8FD9\u7C7B\u4EFB\u52A1\u7684\u5185\u7F6E\u6D41\u7A0B\uFF0C\u6309\u8FD4\u56DE\u5185\u5BB9\u5728\u5F53\u524D\u4F1A\u8BDD\u7EE7\u7EED\uFF0C\u4E0D\u9700\u8981\u6253\u5F00\u5DE5\u4F5C\u5BA4\u9762\u677F\uFF0C\u4E5F\u4E0D\u9700\u8981\u7528\u6237\u53E6\u9009\u76EE\u5F55\u3002\u67E5\u4EE3\u7801\u7ED3\u6784\u7528 eng_graph\uFF1Asearch \u6309\u540D\u5B57\u3001\u8DEF\u5F84\u6216\u7528\u9014\u627E\u7B26\u53F7\uFF0Ccontext \u770B\u4E00\u4E2A\u7B26\u53F7\u7684\u7B7E\u540D\u3001\u6210\u5458\u4E0E\u4E0A\u4E0B\u6E38\uFF0Cimpact \u770B\u6539\u52A8\u5B83\u4F1A\u6CE2\u53CA\u54EA\u91CC\uFF0Cchanges \u628A Git \u6539\u52A8\u5BF9\u5E94\u5230\u7B26\u53F7\uFF0Coverview \u770B\u9879\u76EE\u6982\u89C8\uFF1B\u5168\u5C40\u89C6\u56FE\uFF1Aclusters \u770B\u6309\u8C03\u7528\u5173\u7CFB\u5212\u5206\u7684\u529F\u80FD\u805A\u7C7B\uFF0Cflows \u770B\u4ECE\u9875\u9762\u4E0E\u8DEF\u7531\u51FA\u53D1\u7684\u6267\u884C\u6D41\u7A0B\uFF0Ctrace \u67E5 A \u600E\u6837\u8C03\u7528\u5230 B\uFF0Croutes \u770B\u9875\u9762\u4E0E\u63A5\u53E3\u8DEF\u7531\uFF0Ccycles \u770B\u5FAA\u73AF\u5BFC\u5165\u3002\u56FE\u8C31\u5728\u6BCF\u6B21\u8C03\u7528\u65F6\u81EA\u52A8\u540C\u6B65\u6700\u65B0\u4EE3\u7801\uFF0C\u4E0D\u9700\u8981\u624B\u52A8\u91CD\u5EFA\u3002\u56FE\u8C31\u544A\u8BC9\u4F60\u4EE3\u7801\u5728\u54EA\u91CC\uFF0C\u52A8\u624B\u524D\u4ECD\u8981\u6253\u5F00\u6E90\u7801\u8BFB\u4E00\u904D\u3002\u8FED\u4EE3\u65B9\u6848\u53EA\u901A\u8FC7 eng_plan \u63D0\u4EA4\uFF08stage=submit\uFF09\u4E0E\u5B9E\u65BD\u540E\u6838\u5BF9\uFF08stage=check\uFF09\uFF0C\u4E0D\u624B\u5199 docs/iterations \u4E0B\u7684\u6587\u6863\u3002\u56FE\u8C31\u76EE\u524D\u8986\u76D6 TypeScript\u3001JavaScript \u4E0E Vue\uFF1B\u5176\u4ED6\u8BED\u8A00\u7684\u4EE3\u7801\u7528\u6587\u672C\u641C\u7D22\u5B9A\u4F4D\uFF0C\u5E76\u5728\u7ED3\u8BBA\u91CC\u8BF4\u660E\u8FD9\u90E8\u5206\u6CA1\u6709\u7ECF\u8FC7\u56FE\u8C31\u6838\u5BF9\u3002\u6CA1\u6709\u5DE5\u4F5C\u533A\u65F6\u8BF7\u7528\u6237\u5148\u5728 dsh \u91CC\u6253\u5F00\u9879\u76EE\u4F1A\u8BDD\u3002";
+var workspaceInstructions = "\u7528\u6237\u901A\u8FC7 @\u5DE5\u4F5C\u5BA4:engineering \u6216 @\u7814\u53D1\u5DE5\u4F5C\u5BA4 \u6307\u5B9A\u7814\u53D1\u5DE5\u4F5C\u5BA4\u3002\u5EFA\u7ACB\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\u3001\u6839\u636E\u9700\u6C42\u6587\u6863\u505A\u8FED\u4EE3\u65B9\u6848\u3001\u5206\u6790\u6539\u52A8\u5F71\u54CD\u3001\u6309\u65B9\u6848\u5B9E\u73B0\u3001\u8BC4\u5BA1\u6539\u52A8\u65F6\uFF0C\u5148\u8C03\u7528 eng_workspace\uFF0Ctask \u5206\u522B\u4E3A graph\u3001analyze\u3001impact\u3001implement\u3001review\uFF0Crequest \u4FDD\u7559\u7528\u6237\u539F\u6587\u3002\u8BE5\u5DE5\u5177\u8FD4\u56DE\u5F53\u524D\u6267\u884C\u4F1A\u8BDD\u7684\u771F\u5B9E\u5DE5\u4F5C\u533A\u3001\u56FE\u8C31\u72B6\u6001\u548C\u8FD9\u7C7B\u4EFB\u52A1\u7684\u5185\u7F6E\u6D41\u7A0B\uFF0C\u6309\u8FD4\u56DE\u5185\u5BB9\u5728\u5F53\u524D\u4F1A\u8BDD\u7EE7\u7EED\uFF0C\u4E0D\u9700\u8981\u6253\u5F00\u5DE5\u4F5C\u5BA4\u9762\u677F\uFF0C\u4E5F\u4E0D\u9700\u8981\u7528\u6237\u53E6\u9009\u76EE\u5F55\u3002\u67E5\u4EE3\u7801\u7ED3\u6784\u7528 eng_graph\uFF1Asearch \u6309\u540D\u5B57\u3001\u8DEF\u5F84\u6216\u7528\u9014\u627E\u7B26\u53F7\uFF0Ccontext \u770B\u4E00\u4E2A\u7B26\u53F7\u7684\u7B7E\u540D\u3001\u6210\u5458\u4E0E\u4E0A\u4E0B\u6E38\uFF0Cimpact \u770B\u6539\u52A8\u5B83\u4F1A\u6CE2\u53CA\u54EA\u91CC\uFF0Cchanges \u628A Git \u6539\u52A8\u5BF9\u5E94\u5230\u7B26\u53F7\uFF0Coverview \u770B\u9879\u76EE\u6982\u89C8\uFF1B\u5168\u5C40\u89C6\u56FE\uFF1Aclusters \u770B\u6309\u8C03\u7528\u5173\u7CFB\u5212\u5206\u7684\u529F\u80FD\u805A\u7C7B\uFF0Cflows \u770B\u4ECE\u9875\u9762\u4E0E\u8DEF\u7531\u51FA\u53D1\u7684\u6267\u884C\u6D41\u7A0B\uFF0Ctrace \u67E5 A \u600E\u6837\u8C03\u7528\u5230 B\uFF0Croutes \u770B\u9875\u9762\u4E0E\u63A5\u53E3\u8DEF\u7531\uFF0Ccycles \u770B\u5FAA\u73AF\u5BFC\u5165\uFF1B\u8BC4\u4F30\u9879\u76EE\u65F6\u7528 health \u770B\u4F53\u68C0\u7ED3\u679C\uFF08\u8D28\u91CF\u5206\u4E0E\u5404\u9879\u68C0\u67E5\u3001\u4F9D\u8D56\u58F0\u660E\u4E0E\u5B9E\u9645\u5BFC\u5165\u7684\u5BF9\u7167\u3001\u6700\u8FD1\u7684\u8FED\u4EE3\u8282\u594F\u4E0E\u6539\u52A8\u70ED\u70B9\u3001\u6BCF\u4E2A\u529F\u80FD\u805A\u7C7B\u7684\u4F18\u5316\u96BE\u5EA6\u4E0E\u8FED\u4EE3\u96BE\u5EA6\uFF09\uFF0C\u7528\u6237\u60F3\u628A\u7ED3\u8BBA\u7559\u7ED9\u4EE5\u540E\u63A5\u624B\u7684\u4EBA\u6216\u5176\u4ED6\u6A21\u578B\u65F6\u7528 export \u5199\u6210\u9879\u76EE\u6863\u6848 docs/engineering/project-map.md\u3002\u56FE\u8C31\u5728\u6BCF\u6B21\u8C03\u7528\u65F6\u81EA\u52A8\u540C\u6B65\u6700\u65B0\u4EE3\u7801\uFF0C\u4E0D\u9700\u8981\u624B\u52A8\u91CD\u5EFA\u3002\u56FE\u8C31\u544A\u8BC9\u4F60\u4EE3\u7801\u5728\u54EA\u91CC\uFF0C\u52A8\u624B\u524D\u4ECD\u8981\u6253\u5F00\u6E90\u7801\u8BFB\u4E00\u904D\u3002\u8FED\u4EE3\u65B9\u6848\u53EA\u901A\u8FC7 eng_plan \u63D0\u4EA4\uFF08stage=submit\uFF09\u4E0E\u5B9E\u65BD\u540E\u6838\u5BF9\uFF08stage=check\uFF09\uFF0C\u4E0D\u624B\u5199 docs/iterations \u4E0B\u7684\u6587\u6863\u3002\u56FE\u8C31\u76EE\u524D\u8986\u76D6 TypeScript\u3001JavaScript \u4E0E Vue\uFF1B\u5176\u4ED6\u8BED\u8A00\u7684\u4EE3\u7801\u7528\u6587\u672C\u641C\u7D22\u5B9A\u4F4D\uFF0C\u5E76\u5728\u7ED3\u8BBA\u91CC\u8BF4\u660E\u8FD9\u90E8\u5206\u6CA1\u6709\u7ECF\u8FC7\u56FE\u8C31\u6838\u5BF9\u3002\u6CA1\u6709\u5DE5\u4F5C\u533A\u65F6\u8BF7\u7528\u6237\u5148\u5728 dsh \u91CC\u6253\u5F00\u9879\u76EE\u4F1A\u8BDD\u3002";
 var planFields = [
   "\u3010plan \u5B57\u6BB5\u3011",
   "slug\uFF1A\u65B9\u6848\u76EE\u5F55\u540D\uFF0C\u5C0F\u5199\u5B57\u6BCD\u3001\u6570\u5B57\u4E0E\u8FDE\u5B57\u7B26\uFF0C\u5EFA\u8BAE\u300C\u5E74\u6708-\u4E3B\u9898\u300D\uFF0C\u5982 2026-11-order-export\u3002",
@@ -6249,7 +6763,7 @@ function taskPrompt(kind, project, request) {
       "\u3010\u672C\u6B21\u4EFB\u52A1\u3011\u4E3A\u5F53\u524D\u9879\u76EE\u5EFA\u7ACB\u6216\u5237\u65B0\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\uFF0C\u5E76\u5411\u7528\u6237\u8BF4\u660E\u56FE\u8C31\u91CC\u6709\u4EC0\u4E48\u3002\u672C\u6B21\u4E0D\u4FEE\u6539\u4EFB\u4F55\u9879\u76EE\u6587\u4EF6\u3002",
       "\u4E0B\u65B9 overview \u662F\u521A\u751F\u6210\u7684\u9879\u76EE\u6982\u89C8\uFF08\u6570\u636E\uFF09\u3002\u5411\u7528\u6237\u6C47\u62A5\uFF1A\u6587\u4EF6\u6570\u3001\u7B26\u53F7\u6570\u4E0E\u5173\u7CFB\u6570\uFF1B\u529F\u80FD\u805A\u7C7B\uFF08overview.clusters\uFF1A\u6309\u8C03\u7528\u5173\u7CFB\u5212\u5206\u7684\u6A21\u5757\uFF0C\u8BF4\u660E\u6700\u5927\u7684\u51E0\u4E2A\u5404\u8D1F\u8D23\u4EC0\u4E48\u3001\u5F7C\u6B64\u600E\u4E48\u4F9D\u8D56\uFF09\uFF1B\u88AB\u4F7F\u7528\u6700\u591A\u7684\u51E0\u4E2A\u7B26\u53F7\uFF1B\u8DEF\u7531\u4E0E\u6267\u884C\u6D41\u7A0B\u7684\u6570\u91CF\uFF08overview.globalViews\uFF09\uFF1B\u5FAA\u73AF\u5BFC\u5165\u6709\u51E0\u7EC4\uFF08\u6709\u5C31\u70B9\u51FA\u6700\u5927\u7684\u4E00\u7EC4\uFF0C\u7528 eng_graph \u7684 cycles \u67E5\u5177\u4F53\u8DEF\u5F84\uFF09\uFF1B\u6709\u591A\u5C11\u6587\u4EF6\u88AB\u8DF3\u8FC7\uFF08\u6784\u5EFA\u4EA7\u7269\u3001\u538B\u7F29\u811A\u672C\u3001\u8D85\u5927\u6587\u4EF6\uFF0C\u89C1 stats.skipped\uFF09\uFF0C\u6709\u591A\u5C11\u6587\u4EF6\u542B\u89E3\u6790\u5668\u4E0D\u8BA4\u8BC6\u7684\u8BED\u6CD5\u3001\u53EA\u89E3\u6790\u4E86\u4E00\u90E8\u5206\uFF08stats.errors\uFF09\u3002",
       "\u8BF4\u660E\u56FE\u8C31\u7684\u8FB9\u754C\uFF1A\u53EA\u8986\u76D6 TypeScript\u3001JavaScript \u4E0E Vue\uFF1B\u6807\u4E3A inferred \u7684\u5173\u7CFB\u6765\u81EA\u81EA\u52A8\u5BFC\u5165\u7B49\u7EA6\u5B9A\u63A8\u65AD\uFF1B\u52A8\u6001\u8C03\u7528\u3001\u5B57\u7B26\u4E32\u62FC\u51FA\u6765\u7684\u8DEF\u5F84\u3001\u6846\u67B6\u6309\u7EA6\u5B9A\u52A0\u8F7D\u7684\u5165\u53E3\u5728\u56FE\u91CC\u770B\u4E0D\u5230\u3002",
-      "\u6700\u540E\u544A\u8BC9\u7528\u6237\u63A5\u4E0B\u6765\u53EF\u4EE5\u505A\u4EC0\u4E48\uFF1A@\u7814\u53D1\u5DE5\u4F5C\u5BA4:\u5206\u6790\u9700\u6C42\u6587\u6863\u3001@\u7814\u53D1\u5DE5\u4F5C\u5BA4:\u5F71\u54CD\u5206\u6790\uFF0C\u6216\u76F4\u63A5\u95EE\u300C\u67D0\u4E2A\u51FD\u6570\u88AB\u54EA\u4E9B\u5730\u65B9\u7528\u5230\u300D\u300C\u67D0\u4E2A\u9875\u9762\u7684\u8C03\u7528\u94FE\u300D\u300CA \u600E\u6837\u8C03\u7528\u5230 B\u300D\uFF1B\u5DE5\u4F5C\u5BA4\u9875\u9762\u7684\u300C\u5168\u5C40\u89C6\u56FE\u300D\u53EF\u4EE5\u770B\u67B6\u6784\u56FE\u3001\u6267\u884C\u6D41\u7A0B\u3001\u8DEF\u7531\u4E0E\u5FAA\u73AF\u4F9D\u8D56\u3002\u4E0D\u8981\u628A\u6574\u4EFD\u6982\u89C8\u6570\u636E\u8D34\u56DE\u5BF9\u8BDD\u3002"
+      "\u6700\u540E\u544A\u8BC9\u7528\u6237\u63A5\u4E0B\u6765\u53EF\u4EE5\u505A\u4EC0\u4E48\uFF1A@\u7814\u53D1\u5DE5\u4F5C\u5BA4:\u5206\u6790\u9700\u6C42\u6587\u6863\u3001@\u7814\u53D1\u5DE5\u4F5C\u5BA4:\u5F71\u54CD\u5206\u6790\uFF0C\u6216\u76F4\u63A5\u95EE\u300C\u67D0\u4E2A\u51FD\u6570\u88AB\u54EA\u4E9B\u5730\u65B9\u7528\u5230\u300D\u300C\u67D0\u4E2A\u9875\u9762\u7684\u8C03\u7528\u94FE\u300D\u300CA \u600E\u6837\u8C03\u7528\u5230 B\u300D\uFF1B\u60F3\u4E86\u89E3\u9879\u76EE\u8D28\u91CF\u3001\u4F9D\u8D56\u548C\u6539\u52A8\u96BE\u5EA6\u53EF\u4EE5\u8BF4\u300C\u7ED9\u9879\u76EE\u505A\u4E2A\u4F53\u68C0\u300D\uFF1B\u5DE5\u4F5C\u5BA4\u9875\u9762\u7684\u300C\u77E5\u8BC6\u56FE\u8C31\u300D\u53EF\u4EE5\u76F4\u63A5\u770B\u56FE\uFF0C\u300C\u5168\u5C40\u89C6\u56FE\u300D\u91CC\u6709\u4F53\u68C0\u3001\u4F9D\u8D56\u3001\u8FED\u4EE3\u60C5\u51B5\u3001\u6539\u52A8\u96BE\u5EA6\u3001\u6267\u884C\u6D41\u7A0B\u4E0E\u8DEF\u7531\u3002\u4E0D\u8981\u628A\u6574\u4EFD\u6982\u89C8\u6570\u636E\u8D34\u56DE\u5BF9\u8BDD\u3002"
     ],
     analyze: [
       "\u3010\u672C\u6B21\u4EFB\u52A1\u3011\u6839\u636E\u7528\u6237\u7ED9\u51FA\u7684\u9700\u6C42\u4EA7\u51FA\u8FED\u4EE3\u65B9\u6848\uFF1A\u6709\u54EA\u4E9B\u529F\u80FD\u70B9\u3001\u600E\u4E48\u8FED\u4EE3\u3001\u5F71\u54CD\u8303\u56F4\u3001\u53C2\u6570\u4E0E\u65B9\u6CD5\u8BBE\u8BA1\u3002\u672C\u6B21\u53EA\u8BFB\u4EE3\u7801\u3001\u5199\u65B9\u6848\u6587\u6863\uFF0C\u4E0D\u4FEE\u6539\u4E1A\u52A1\u4EE3\u7801\u3002",
@@ -6335,34 +6849,271 @@ function skillProvider(skills) {
   };
 }
 
+// studios/engineering/src/settings.ts
+import { randomUUID as randomUUID2 } from "node:crypto";
+import { mkdir as mkdir2, readFile as readFile6, rename as rename2, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
+import { dirname as dirname3 } from "node:path";
+function parseSettings(value, previous = { schemaVersion: 1, principles: true, customRules: "" }) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("\u7F16\u7801\u51C6\u5219\u8BBE\u7F6E\u683C\u5F0F\u65E0\u6548");
+  const record2 = value;
+  if (record2.schemaVersion !== void 0 && record2.schemaVersion !== 1) throw new Error("\u7F16\u7801\u51C6\u5219\u8BBE\u7F6E\u7248\u672C\u4E0D\u53D7\u652F\u6301");
+  if (record2.principles !== void 0 && typeof record2.principles !== "boolean") throw new Error("\u51C6\u5219\u5F00\u5173\u5FC5\u987B\u662F\u5E03\u5C14\u503C");
+  if (record2.customRules !== void 0 && (typeof record2.customRules !== "string" || record2.customRules.length > 12e3)) throw new Error("\u9644\u52A0\u89C4\u5219\u5FC5\u987B\u662F\u6700\u591A 12000 \u5B57\u7684\u6587\u672C");
+  return { schemaVersion: 1, principles: typeof record2.principles === "boolean" ? record2.principles : previous.principles, customRules: typeof record2.customRules === "string" ? record2.customRules.trim() : previous.customRules };
+}
+var SettingsStore = class {
+  path;
+  current = { schemaVersion: 1, principles: true, customRules: "" };
+  pending = Promise.resolve();
+  constructor(path2) {
+    this.path = path2;
+  }
+  get value() {
+    return { ...this.current };
+  }
+  async load() {
+    let raw;
+    try {
+      raw = await readFile6(this.path, "utf8");
+    } catch (error) {
+      if (error instanceof Error && "code" in error && error.code === "ENOENT") return;
+      throw error;
+    }
+    this.current = parseSettings(JSON.parse(raw));
+  }
+  save(input) {
+    const operation = this.pending.then(async () => {
+      const next = parseSettings(input, this.current);
+      await mkdir2(dirname3(this.path), { recursive: true });
+      const temporary = this.path + "." + randomUUID2() + ".tmp";
+      try {
+        await writeFile2(temporary, JSON.stringify(next, null, 2) + "\n");
+        await rename2(temporary, this.path);
+      } catch (error) {
+        await rm2(temporary, { force: true });
+        throw error;
+      }
+      this.current = next;
+      return this.value;
+    });
+    this.pending = operation.then(() => {
+    }, () => {
+    });
+    return operation;
+  }
+};
+
+// studios/engineering/src/plan-service.ts
+import { mkdir as mkdir3, readFile as readFile7, writeFile as writeFile3 } from "node:fs/promises";
+import { join as join7 } from "node:path";
+function planDirectory(root, slug) {
+  if (!/^[a-z0-9][a-z0-9-]{1,63}$/.test(slug)) throw new Error("slug \u683C\u5F0F\u65E0\u6548");
+  return join7(root, "docs/iterations", slug);
+}
+async function readSavedPlan(root, slug) {
+  const raw = object(JSON.parse(await readFile7(join7(planDirectory(root, slug), "iteration.json"), "utf8")));
+  if (raw.schemaVersion !== 1) throw new Error("\u65B9\u6848\u6587\u4EF6\u7248\u672C\u4E0D\u53D7\u652F\u6301");
+  const signatures = object(raw.currentSignatures);
+  if (Object.values(signatures).some((value) => typeof value !== "string")) throw new Error("\u65B9\u6848\u7B7E\u540D\u8BB0\u5F55\u683C\u5F0F\u65E0\u6548");
+  const plan = parsePlan(raw.plan);
+  if (plan.slug !== slug) throw new Error("\u65B9\u6848\u76EE\u5F55\u4E0E\u5185\u5BB9\u4E2D\u7684 slug \u4E0D\u4E00\u81F4");
+  return { schemaVersion: 1, createdAt: text(raw.createdAt, 100), baseCommit: typeof raw.baseCommit === "string" ? raw.baseCommit : "", plan, currentSignatures: signatures };
+}
+function parseCheck(value) {
+  const raw = object(value);
+  if (typeof raw.ok !== "boolean" || typeof raw.slug !== "string" || typeof raw.checkedAt !== "string" || typeof raw.commit !== "string" || typeof raw.implemented !== "number" || typeof raw.total !== "number" || !Array.isArray(raw.issues) || !raw.issues.every((item) => typeof item === "string") || !Array.isArray(raw.warnings) || !raw.warnings.every((item) => typeof item === "string")) throw new Error("\u5386\u53F2\u6838\u5BF9\u62A5\u544A\u683C\u5F0F\u65E0\u6548\uFF0C\u8BF7\u91CD\u65B0\u6838\u5BF9");
+  return raw;
+}
+async function planDetail(root, slug) {
+  const saved = await readSavedPlan(root, slug);
+  let report = null;
+  try {
+    report = parseCheck(JSON.parse(await readFile7(join7(planDirectory(root, slug), "check-report.json"), "utf8")));
+  } catch (error) {
+    if (!(error instanceof Error && "code" in error && error.code === "ENOENT")) throw error;
+  }
+  return { slug, createdAt: saved.createdAt, baseCommit: saved.baseCommit, plan: saved.plan, report };
+}
+async function verifyPlan(index, slug, signal) {
+  const root = index.graph.root, saved = await readSavedPlan(root, slug);
+  const changes = saved.baseCommit ? await workingChanges(root, saved.baseCommit, signal) : void 0;
+  const report = { checkedAt: (/* @__PURE__ */ new Date()).toISOString(), commit: await headCommit(root, signal), ...await checkPlan(index, saved, changes, (path2) => exists2(join7(root, path2))) };
+  signal?.throwIfAborted();
+  await mkdir3(planDirectory(root, slug), { recursive: true });
+  await writeFile3(join7(planDirectory(root, slug), "check-report.json"), JSON.stringify(report, null, 2) + "\n");
+  return report;
+}
+
+// studios/engineering/src/page-service.ts
+import { isAbsolute as isAbsolute3 } from "node:path";
+
+// studios/engineering/src/graph/canvas.ts
+var GLOBAL_NODES = 140;
+var GLOBAL_CLUSTERS = 12;
+var CLUSTER_NODES = 160;
+function nodeLabel(file) {
+  const parts2 = file.split("/");
+  const base = parts2[parts2.length - 1].replace(/\.[^.]+$/, "");
+  return /^(index|main|app|list|detail|edit)$/i.test(base) && parts2.length > 1 ? parts2[parts2.length - 2] + "/" + base : base;
+}
+function canvasOf(index, focus) {
+  const views = viewsOf(index);
+  const isFile = (node) => node.kind === "file" || node.kind === "component";
+  const pairs = /* @__PURE__ */ new Map();
+  const usedBy3 = /* @__PURE__ */ new Map(), uses = /* @__PURE__ */ new Map();
+  for (const edge of index.graph.edges) {
+    const from = index.nodes.get(edge.from).file, to = index.nodes.get(edge.to).file;
+    if (from === to) continue;
+    usedBy3.set(to, (usedBy3.get(to) ?? 0) + 1);
+    uses.set(from, (uses.get(from) ?? 0) + 1);
+    const [a, b] = from < to ? [from, to] : [to, from], key = a + "\0" + b;
+    const pair = pairs.get(key) ?? { a, b, weight: 0, inferred: 0, kinds: /* @__PURE__ */ new Map() };
+    pair.weight += 1;
+    pair.kinds.set(edge.kind, (pair.kinds.get(edge.kind) ?? 0) + 1);
+    if (edge.confidence === "inferred") pair.inferred += 1;
+    pairs.set(key, pair);
+  }
+  const degree = (file) => (usedBy3.get(file) ?? 0) + (uses.get(file) ?? 0);
+  const filesOf = /* @__PURE__ */ new Map();
+  for (const node of index.graph.nodes) {
+    if (!isFile(node)) continue;
+    const id = views.clusterOf.get(node.id);
+    if (!id) continue;
+    const list3 = filesOf.get(id);
+    if (list3) list3.push(node.id);
+    else filesOf.set(id, [node.id]);
+  }
+  const rank = (files) => [...files].sort((a, b) => degree(b) + (views.entries.has(b) ? 6 : 0) - (degree(a) + (views.entries.has(a) ? 6 : 0)) || a.localeCompare(b));
+  const scoped = focus ? views.clusters.filter((cluster) => cluster.id === focus) : views.clusters.slice(0, GLOBAL_CLUSTERS);
+  const clustered = scoped.reduce((sum, cluster) => sum + cluster.files, 0);
+  const chosen = /* @__PURE__ */ new Set();
+  const clusters = [];
+  for (const cluster of scoped) {
+    const files = filesOf.get(cluster.id) ?? [];
+    const quota = focus ? CLUSTER_NODES : Math.max(4, Math.round(GLOBAL_NODES * cluster.files / Math.max(1, clustered)));
+    const picked = rank(files).slice(0, quota);
+    for (const file of picked) chosen.add(file);
+    clusters.push({ id: cluster.id, label: cluster.label, files: cluster.files, shown: picked.length });
+  }
+  const kindOf = (node) => isTest(node.id) ? "test" : views.entries.has(node.id) ? "entry" : node.kind === "component" ? "component" : "module";
+  const nodes = [...chosen].map((file) => {
+    const node = index.nodes.get(file);
+    return { id: file, label: nodeLabel(file), kind: kindOf(node), cluster: views.clusterOf.get(file), usedBy: usedBy3.get(file) ?? 0, uses: uses.get(file) ?? 0, lines: node.endLine };
+  });
+  const dominant = (kinds) => [...kinds.entries()].sort((a, b) => b[1] - a[1])[0][0];
+  const candidates = [...pairs.values()].filter((pair) => chosen.has(pair.a) && chosen.has(pair.b)).sort((a, b) => b.weight - a.weight);
+  const budget = Math.round(nodes.length * (focus ? 2.4 : 1.8));
+  const kept = new Set(candidates.slice(0, budget));
+  const linked = /* @__PURE__ */ new Set();
+  for (const pair of kept) {
+    linked.add(pair.a);
+    linked.add(pair.b);
+  }
+  for (const pair of candidates) {
+    if (linked.has(pair.a) && linked.has(pair.b)) continue;
+    kept.add(pair);
+    linked.add(pair.a);
+    linked.add(pair.b);
+  }
+  const edges = [...kept].map((pair) => ({ from: pair.a, to: pair.b, weight: pair.weight, inferred: pair.inferred === pair.weight, kind: dominant(pair.kinds) }));
+  return {
+    scope: focus ? "cluster" : "global",
+    ...focus ? { focus } : {},
+    nodes,
+    edges,
+    clusters,
+    total: { files: index.graph.stats.files, nodes: nodes.length, relations: edges.length, clusters: views.clusters.length, hiddenClusters: focus ? 0 : Math.max(0, views.clusters.length - scoped.length) }
+  };
+}
+
+// studios/engineering/src/page-service.ts
+function createPageDispatch(services) {
+  const { engine, signal, skills, snapshot, configure, assess, exportArchive, locate: locate2 } = services;
+  return async (input) => {
+    const action = text(input.action, 32);
+    if (action === "snapshot") return snapshot();
+    if (action === "configure") {
+      await configure(input.settings);
+      return snapshot();
+    }
+    if (action === "skill") {
+      const skill = skills.find((item) => item.name === text(input.name, 64));
+      if (!skill) throw new Error("\u6CA1\u6709\u8FD9\u4E2A\u6280\u80FD");
+      return { name: skill.name, description: skill.description, content: skill.content };
+    }
+    const root = text(input.root, 2048);
+    if (!isAbsolute3(root)) throw new Error("\u8BF7\u586B\u5199\u9879\u76EE\u7684\u7EDD\u5BF9\u8DEF\u5F84");
+    if (action === "remove") {
+      await engine.remove(root);
+      return snapshot();
+    }
+    if (action !== "build" && !(await engine.list()).some((meta) => meta.root === root)) throw new Error("\u8FD9\u4E2A\u9879\u76EE\u8FD8\u6CA1\u6709\u5EFA\u8FC7\u56FE\u8C31");
+    const { index, freshness } = await engine.ensure(root, { signal, force: action === "rebuild" });
+    if (action === "build" || action === "rebuild" || action === "overview") return { freshness, overview: overview(index) };
+    if (action === "search") return { freshness, ...search(index, text(input.query, 200), 30) };
+    if (action === "views") return { clusters: clusterList(index, 40), flows: flowList(index, { limit: 400 }), routes: routeList(index, { limit: 1e3 }), cycles: cycleList(index, 50) };
+    if (action === "plans") return { plans: await readPlans(root) };
+    if (action === "plan") return planDetail(root, text(input.slug, 64));
+    if (action === "check-plan") return verifyPlan(index, text(input.slug, 64), signal);
+    if (action === "changes") {
+      const files = await workingChanges(root, "HEAD", signal);
+      if (!files) return { available: false, files: [], symbols: [], deleted: [], outside: [] };
+      const mapped = changedSymbols(index, files);
+      return { available: true, files, symbols: mapped.symbols.map((node) => brief(index, node)), deleted: mapped.deleted, outside: mapped.outside, impact: mapped.symbols.length ? impact(index, mapped.symbols, { limit: 100 }) : void 0 };
+    }
+    if (action === "health") return assess(index, signal);
+    if (action === "canvas") return canvasOf(index, input.cluster === void 0 || input.cluster === "" ? void 0 : text(input.cluster, 16));
+    if (action === "export") return exportArchive(index, signal);
+    if (action === "cluster") {
+      const detail = clusterDetail(index, text(input.id, 16));
+      if (!detail) throw new Error("\u6CA1\u6709\u8FD9\u4E2A\u805A\u7C7B");
+      return detail;
+    }
+    if (action === "flow") {
+      const detail = flowDetail(index, text(input.id, 2048));
+      if (!detail) throw new Error("\u6CA1\u6709\u8FD9\u6761\u6D41\u7A0B");
+      return detail;
+    }
+    if (action === "trace") {
+      const from = locate2(index, text(input.from, 600)), to = locate2(index, text(input.to, 600));
+      if ("problem" in from) return from.problem;
+      if ("problem" in to) return to.problem;
+      return traceResult(index, from.node, to.node);
+    }
+    if (action === "context" || action === "impact") {
+      const found = locate2(index, text(input.target, 600));
+      if ("problem" in found) return found.problem;
+      return action === "context" ? { ...context(index, found.node, 40), cluster: clusterOfNode(index, found.node) } : impact(index, [found.node], { limit: 60 });
+    }
+    throw new Error("\u672A\u77E5\u5DE5\u4F5C\u5BA4\u64CD\u4F5C");
+  };
+}
+
 // studios/engineering/src/index.ts
 var name2 = "dsh-studio-engineering";
 var inject = ["studioProjects", "tools", "systemPrompt"];
 var tasks = Object.keys(taskLabels);
-var graphActions = ["overview", "search", "context", "impact", "changes", "clusters", "flows", "trace", "routes", "cycles", "rebuild"];
+var graphActions = ["overview", "search", "context", "impact", "changes", "clusters", "flows", "trace", "routes", "cycles", "health", "export", "rebuild"];
+var healthSections = ["quality", "dependencies", "iteration", "difficulty"];
 var json = (value) => JSON.stringify(value);
 async function apply(ctx) {
-  const home = join7(process.env.DSH_HOME ?? join7(homedir2(), ".dsh"), "studio/engineering");
-  const engine = new GraphEngine(join7(home, "graphs"));
+  const home = join8(process.env.DSH_HOME ?? join8(homedir2(), ".dsh"), "studio/engineering");
+  const engine = new GraphEngine(join8(home, "graphs"));
   const lifetime = new AbortController();
   const skills = await loadSkills(fileURLToPath2(new URL("../skills/", import.meta.url)));
   const methods = (names) => names.flatMap((name3) => {
     const skill = skills.find((item) => item.name === name3);
     return skill ? [{ name: name3, content: skill.content }] : [];
   });
-  const settingsPath = join7(home, "settings.json");
-  let settings = { schemaVersion: 1, principles: true };
-  try {
-    const saved = object(JSON.parse(await readFile6(settingsPath, "utf8")));
-    if (saved.schemaVersion === 1) settings = { schemaVersion: 1, principles: saved.principles !== false };
-  } catch {
-  }
+  const settingsPath = join8(home, "settings.json");
+  const settingsStore = new SettingsStore(settingsPath);
+  await settingsStore.load();
   ctx.effect(() => () => lifetime.abort(), "\u7814\u53D1\u5DE5\u4F5C\u5BA4\uFF1A\u7ED3\u675F\u5728\u9014\u7684\u5EFA\u56FE");
   let disposePrompt = () => {
   };
   const registerPrompt = () => {
     disposePrompt();
-    disposePrompt = ctx.systemPrompt.section({ name: "studio-engineering-workspace", order: 925, interpolate: false, text: workspaceInstructions + (settings.principles ? principlesSummary : "") });
+    disposePrompt = ctx.systemPrompt.section({ name: "studio-engineering-workspace", order: 925, interpolate: false, text: workspaceInstructions + (settingsStore.value.principles ? principlesSummary : "") + (settingsStore.value.customRules ? "\n\n\u7528\u6237\u914D\u7F6E\u7684\u5168\u5C40\u9644\u52A0\u7F16\u7801\u89C4\u5219\uFF1A\n" + settingsStore.value.customRules : "") });
   };
   ctx.effect(() => {
     registerPrompt();
@@ -6387,6 +7138,36 @@ async function apply(ctx) {
     return { problem: { reference, issue: "\u56FE\u8C31\u91CC\u6CA1\u6709\u627E\u5230", suggestions: resolution.suggestions } };
   };
   const graphBrief = (index) => ({ commit: index.graph.commit, builtAt: index.graph.builtAt, stats: index.graph.stats });
+  const assess = async (index, signal) => {
+    const root = index.graph.root;
+    const [history, manifest, plans] = await Promise.all([readHistory(root, index.graph.commit, 12, signal), readManifest(root), readPlans(root)]);
+    return healthOf(index, history, manifest, plans);
+  };
+  const healthBrief = (report) => ({
+    scale: report.scale,
+    highlights: report.highlights,
+    quality: { score: report.quality.score, grade: report.quality.grade, findings: report.quality.findings.map((finding) => ({ id: finding.id, level: finding.level, title: finding.title, value: finding.value, detail: finding.detail, penalty: finding.penalty, items: finding.items.slice(0, 5) })) },
+    dependencies: { manifest: report.dependencies.manifest, packages: report.dependencies.packages.slice(0, 15), unused: report.dependencies.unused, undeclared: report.dependencies.undeclared.slice(0, 15), foundations: report.dependencies.foundations, note: report.dependencies.note },
+    iteration: { available: report.iteration.available, pace: report.iteration.pace, types: report.iteration.types, hotspots: report.iteration.hotspots.slice(0, 8), clusters: report.iteration.clusters.slice(0, 8), recent: report.iteration.recent.slice(0, 8), plans: report.iteration.plans },
+    difficulty: { note: report.difficulty.note, clusters: [...report.difficulty.clusters].sort((a, b) => b.refactor.score - a.refactor.score).slice(0, 12).map((cluster) => ({ id: cluster.id, label: cluster.label, files: cluster.files, refactor: cluster.refactor, extend: cluster.extend })) },
+    more: "\u6BCF\u4E00\u7C7B\u7684\u5B8C\u6574\u5185\u5BB9\u7528 eng_graph\uFF08action=health\uFF0Ctarget=quality / dependencies / iteration / difficulty\uFF09\u67E5\u770B\uFF1B\u8981\u628A\u8FD9\u4EFD\u62A5\u544A\u7559\u7ED9\u4EE5\u540E\u63A5\u624B\u7684\u4EBA\u6216\u6A21\u578B\uFF0C\u7528 action=export \u5199\u6210\u9879\u76EE\u6863\u6848\u3002"
+  });
+  const exportArchive = async (index, signal) => {
+    const root = index.graph.root;
+    const [project, report] = await Promise.all([inspectProject(root), assess(index, signal)]);
+    const brief2 = overview(index);
+    const extras = {
+      clusters: clusterList(index, 60).clusters.map((cluster) => ({ id: cluster.id, label: cluster.label, files: cluster.files, cohesion: cluster.cohesion, keywords: cluster.keywords, directories: cluster.directories, members: cluster.members, dependsOn: cluster.dependsOn })),
+      hubs: brief2.hubs.map((hub) => ({ id: hub.id, usedBy: hub.usedBy, ...hub.signature ? { signature: hub.signature } : {} })),
+      entries: brief2.entries,
+      routes: routeList(index, { limit: 2e3 }).routes.map((route) => ({ path: route.path, file: route.file, kind: route.kind, ...route.title ? { title: route.title } : {} }))
+    };
+    signal.throwIfAborted();
+    await mkdir4(join8(root, ARCHIVE_DIR), { recursive: true });
+    await writeFile4(join8(root, ARCHIVE_MARKDOWN), renderArchive(project, report, extras));
+    await writeFile4(join8(root, ARCHIVE_JSON), JSON.stringify({ generatedAt: (/* @__PURE__ */ new Date()).toISOString(), project: { name: project.name, frameworks: project.frameworks, packageManager: project.packageManager, conventions: project.conventions }, ...report, structure: extras }, null, 2) + "\n");
+    return { document: ARCHIVE_MARKDOWN, data: ARCHIVE_JSON, grade: report.quality.grade, score: report.quality.score, highlights: report.highlights };
+  };
   ctx.effect(() => ctx.tools.register({
     name: "eng_workspace",
     description: "\u51C6\u5907\u5F53\u524D\u4F1A\u8BDD\u7684\u7814\u53D1\u4EFB\u52A1\uFF1A\u8BFB\u53D6\u5B9E\u9645\u5DE5\u4F5C\u533A\u4E0E\u9879\u76EE\u7EA6\u5B9A\uFF0C\u540C\u6B65\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\uFF0C\u8FD4\u56DE\u8BE5\u4EFB\u52A1\u7684\u5185\u7F6E\u6D41\u7A0B\u4E0E\u6240\u7528\u65B9\u6CD5\u3002graph \u5EFA\u7ACB\u6216\u5237\u65B0\u56FE\u8C31\u5E76\u7ED9\u51FA\u9879\u76EE\u6982\u89C8\uFF1Banalyze \u6839\u636E\u9700\u6C42\u6587\u6863\u4EA7\u51FA\u8FED\u4EE3\u65B9\u6848\uFF08\u529F\u80FD\u70B9\u3001\u6B65\u9AA4\u3001\u5F71\u54CD\u8303\u56F4\u3001\u53C2\u6570\u4E0E\u65B9\u6CD5\u8BBE\u8BA1\uFF09\uFF1Bimpact \u5206\u6790\u6539\u52A8\u5F71\u54CD\uFF1Bimplement \u6309\u8FED\u4EE3\u65B9\u6848\u5B9E\u73B0\uFF1Breview \u8BC4\u5BA1\u6539\u52A8\u3002",
@@ -6406,11 +7187,11 @@ async function apply(ctx) {
   }), "\u7814\u53D1\u5DE5\u4F5C\u5BA4\uFF1A\u5F53\u524D\u4F1A\u8BDD\u4EFB\u52A1\u5DE5\u5177");
   ctx.effect(() => ctx.tools.register({
     name: "eng_graph",
-    description: "\u67E5\u8BE2\u5F53\u524D\u9879\u76EE\u7684\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\uFF08TypeScript / JavaScript / Vue\uFF09\uFF0C\u6BCF\u6B21\u8C03\u7528\u81EA\u52A8\u540C\u6B65\u6700\u65B0\u4EE3\u7801\u3002overview\uFF1A\u9879\u76EE\u89C4\u6A21\u3001\u6A21\u5757\u4E0E\u4F9D\u8D56\u3001\u88AB\u4F7F\u7528\u6700\u591A\u7684\u7B26\u53F7\u3001\u5165\u53E3\uFF1Bsearch\uFF1A\u6309\u540D\u5B57\u3001\u8DEF\u5F84\u6216\u7528\u9014\u627E\u7B26\u53F7\uFF08query\uFF09\uFF1Bcontext\uFF1A\u4E00\u4E2A\u7B26\u53F7\u6216\u6587\u4EF6\u7684\u7B7E\u540D\u3001\u6210\u5458\u3001\u8C01\u5728\u7528\u5B83\u3001\u5B83\u7528\u4E86\u8C01\uFF08target\uFF09\uFF1Bimpact\uFF1A\u6539\u52A8\u82E5\u5E72\u76EE\u6807\u4F1A\u6CE2\u53CA\u54EA\u91CC\uFF0C\u6309\u76F4\u63A5 / \u95F4\u63A5 / \u9700\u56DE\u5F52\u5206\u7EA7\u5E76\u7ED9\u51FA\u98CE\u9669\uFF08targets\uFF09\uFF1Bchanges\uFF1A\u628A Git \u6539\u52A8\u5BF9\u5E94\u5230\u7B26\u53F7\u5E76\u8BA1\u7B97\u5F71\u54CD\u9762\uFF08base \u7F3A\u7701\u4E3A HEAD\uFF0C\u5373\u5DE5\u4F5C\u533A\u672A\u63D0\u4EA4\u7684\u6539\u52A8\uFF09\uFF1Bclusters\uFF1A\u6309\u8C03\u7528\u5173\u7CFB\u81EA\u52A8\u5212\u5206\u7684\u529F\u80FD\u805A\u7C7B\u53CA\u5176\u76F8\u4E92\u4F9D\u8D56\uFF0C\u5E26 target \u65F6\u8FD4\u56DE\u76EE\u6807\u6240\u5728\u805A\u7C7B\u7684\u5168\u90E8\u6587\u4EF6\uFF08target \u4E5F\u53EF\u4EE5\u76F4\u63A5\u5199\u805A\u7C7B ID\uFF0C\u5982 c3\uFF09\uFF1Bflows\uFF1A\u4ECE\u9875\u9762\u3001\u8DEF\u7531\u4E0E\u5165\u53E3\u51FA\u53D1\u7684\u6267\u884C\u6D41\u7A0B\uFF0C\u5E26 target \u65F6\u53EA\u5217\u7ECF\u8FC7\u5B83\u7684\u6D41\u7A0B\uFF0Ctarget \u662F\u67D0\u6761\u6D41\u7A0B\u7684\u5165\u53E3\u6587\u4EF6\u65F6\u8FD4\u56DE\u9010\u6B65\u660E\u7EC6\uFF0Cquery \u6309\u540D\u79F0\u6216\u8DEF\u7531\u8FC7\u6EE4\uFF1Btrace\uFF1A\u4ECE from \u5230 to \u7684\u6700\u77ED\u8C03\u7528\u8DEF\u5F84\uFF08A \u600E\u6837\u8C03\u7528\u5230 B\uFF09\uFF1Broutes\uFF1A\u6846\u67B6\u7EA6\u5B9A\u7684\u9875\u9762\u4E0E\u63A5\u53E3\u8DEF\u7531\uFF08uni-app \u7684 pages.json\u3001Nuxt \u7684 pages \u4E0E server \u76EE\u5F55\uFF09\uFF0Cquery \u8FC7\u6EE4\uFF1Bcycles\uFF1A\u6587\u4EF6\u4E4B\u95F4\u7684\u5FAA\u73AF\u5BFC\u5165\uFF1Brebuild\uFF1A\u4E22\u5F03\u7F13\u5B58\u5168\u91CF\u91CD\u5EFA\u3002\u76EE\u6807\u5199\u300C\u8DEF\u5F84#\u7B26\u53F7\u300D\u3001\u6587\u4EF6\u8DEF\u5F84\u6216\u7B26\u53F7\u540D\uFF1B\u540C\u540D\u65F6\u8FD4\u56DE\u5019\u9009\u3002",
+    description: "\u67E5\u8BE2\u5F53\u524D\u9879\u76EE\u7684\u4EE3\u7801\u77E5\u8BC6\u56FE\u8C31\uFF08TypeScript / JavaScript / Vue\uFF09\uFF0C\u6BCF\u6B21\u8C03\u7528\u81EA\u52A8\u540C\u6B65\u6700\u65B0\u4EE3\u7801\u3002overview\uFF1A\u9879\u76EE\u89C4\u6A21\u3001\u6A21\u5757\u4E0E\u4F9D\u8D56\u3001\u88AB\u4F7F\u7528\u6700\u591A\u7684\u7B26\u53F7\u3001\u5165\u53E3\uFF1Bsearch\uFF1A\u6309\u540D\u5B57\u3001\u8DEF\u5F84\u6216\u7528\u9014\u627E\u7B26\u53F7\uFF08query\uFF09\uFF1Bcontext\uFF1A\u4E00\u4E2A\u7B26\u53F7\u6216\u6587\u4EF6\u7684\u7B7E\u540D\u3001\u6210\u5458\u3001\u8C01\u5728\u7528\u5B83\u3001\u5B83\u7528\u4E86\u8C01\uFF08target\uFF09\uFF1Bimpact\uFF1A\u6539\u52A8\u82E5\u5E72\u76EE\u6807\u4F1A\u6CE2\u53CA\u54EA\u91CC\uFF0C\u6309\u76F4\u63A5 / \u95F4\u63A5 / \u9700\u56DE\u5F52\u5206\u7EA7\u5E76\u7ED9\u51FA\u98CE\u9669\uFF08targets\uFF09\uFF1Bchanges\uFF1A\u628A Git \u6539\u52A8\u5BF9\u5E94\u5230\u7B26\u53F7\u5E76\u8BA1\u7B97\u5F71\u54CD\u9762\uFF08base \u7F3A\u7701\u4E3A HEAD\uFF0C\u5373\u5DE5\u4F5C\u533A\u672A\u63D0\u4EA4\u7684\u6539\u52A8\uFF09\uFF1Bclusters\uFF1A\u6309\u8C03\u7528\u5173\u7CFB\u81EA\u52A8\u5212\u5206\u7684\u529F\u80FD\u805A\u7C7B\u53CA\u5176\u76F8\u4E92\u4F9D\u8D56\uFF0C\u5E26 target \u65F6\u8FD4\u56DE\u76EE\u6807\u6240\u5728\u805A\u7C7B\u7684\u5168\u90E8\u6587\u4EF6\uFF08target \u4E5F\u53EF\u4EE5\u76F4\u63A5\u5199\u805A\u7C7B ID\uFF0C\u5982 c3\uFF09\uFF1Bflows\uFF1A\u4ECE\u9875\u9762\u3001\u8DEF\u7531\u4E0E\u5165\u53E3\u51FA\u53D1\u7684\u6267\u884C\u6D41\u7A0B\uFF0C\u5E26 target \u65F6\u53EA\u5217\u7ECF\u8FC7\u5B83\u7684\u6D41\u7A0B\uFF0Ctarget \u662F\u67D0\u6761\u6D41\u7A0B\u7684\u5165\u53E3\u6587\u4EF6\u65F6\u8FD4\u56DE\u9010\u6B65\u660E\u7EC6\uFF0Cquery \u6309\u540D\u79F0\u6216\u8DEF\u7531\u8FC7\u6EE4\uFF1Btrace\uFF1A\u4ECE from \u5230 to \u7684\u6700\u77ED\u8C03\u7528\u8DEF\u5F84\uFF08A \u600E\u6837\u8C03\u7528\u5230 B\uFF09\uFF1Broutes\uFF1A\u6846\u67B6\u7EA6\u5B9A\u7684\u9875\u9762\u4E0E\u63A5\u53E3\u8DEF\u7531\uFF08uni-app \u7684 pages.json\u3001Nuxt \u7684 pages \u4E0E server \u76EE\u5F55\uFF09\uFF0Cquery \u8FC7\u6EE4\uFF1Bcycles\uFF1A\u6587\u4EF6\u4E4B\u95F4\u7684\u5FAA\u73AF\u5BFC\u5165\uFF1Bhealth\uFF1A\u9879\u76EE\u4F53\u68C0\u2014\u2014\u89C4\u6A21\u3001\u8D28\u91CF\uFF08\u5FAA\u73AF\u5BFC\u5165\u3001\u672A\u4F7F\u7528\u7684\u5BFC\u51FA\u3001\u8D85\u957F\u6587\u4EF6\u4E0E\u51FD\u6570\u3001\u6D4B\u8BD5\u60C5\u51B5\u53CA\u8D28\u91CF\u5206\uFF09\u3001\u4F9D\u8D56\uFF08package.json \u58F0\u660E\u4E0E\u6E90\u7801\u5B9E\u9645\u5BFC\u5165\u7684\u5BF9\u7167\u3001\u805A\u7C7B\u4E4B\u95F4\u7684\u4F9D\u8D56\uFF09\u3001\u8FED\u4EE3\u60C5\u51B5\uFF08\u6700\u8FD1 12 \u4E2A\u6708\u7684\u63D0\u4EA4\u8282\u594F\u3001\u6539\u52A8\u6700\u9891\u7E41\u7684\u6587\u4EF6\u3001\u5404\u805A\u7C7B\u7684\u6D3B\u8DC3\u5EA6\u3001\u5DF2\u6709\u7684\u8FED\u4EE3\u65B9\u6848\uFF09\u4E0E\u6BCF\u4E2A\u529F\u80FD\u805A\u7C7B\u7684\u4F18\u5316\u96BE\u5EA6\u3001\u8FED\u4EE3\u96BE\u5EA6\u53CA\u539F\u56E0\uFF0C\u5E26 target\uFF08quality / dependencies / iteration / difficulty\uFF09\u65F6\u8FD4\u56DE\u8BE5\u7C7B\u7684\u5B8C\u6574\u5185\u5BB9\uFF0C\u8BC4\u4F30\u9879\u76EE\u8D28\u91CF\u3001\u4F9D\u8D56\u548C\u6539\u52A8\u96BE\u5EA6\u65F6\u5148\u8C03\u5B83\uFF1Bexport\uFF1A\u628A\u4F53\u68C0\u7ED3\u679C\u5199\u6210\u9879\u76EE\u6863\u6848 docs/engineering/project-map.md \u4E0E project-map.json\uFF0C\u4F9B\u4EE5\u540E\u63A5\u624B\u7684\u4EBA\u6216\u4EFB\u610F\u6A21\u578B\u76F4\u63A5\u9605\u8BFB\uFF08\u4F1A\u5728\u9879\u76EE\u91CC\u5199\u8FD9\u4E24\u4E2A\u6587\u4EF6\uFF09\uFF1Brebuild\uFF1A\u4E22\u5F03\u7F13\u5B58\u5168\u91CF\u91CD\u5EFA\u3002\u76EE\u6807\u5199\u300C\u8DEF\u5F84#\u7B26\u53F7\u300D\u3001\u6587\u4EF6\u8DEF\u5F84\u6216\u7B26\u53F7\u540D\uFF1B\u540C\u540D\u65F6\u8FD4\u56DE\u5019\u9009\u3002",
     parameters: { type: "object", properties: {
       action: { type: "string", enum: [...graphActions] },
       query: { type: "string", maxLength: 200, description: "search\uFF1A\u5173\u952E\u8BCD\uFF1Bflows / routes\uFF1A\u6309\u540D\u79F0\u3001\u8DEF\u7531\u6216\u6587\u4EF6\u8FC7\u6EE4" },
-      target: { type: "string", maxLength: 600, description: "context / clusters / flows\uFF1A\u8DEF\u5F84#\u7B26\u53F7\u3001\u6587\u4EF6\u8DEF\u5F84\u3001\u7B26\u53F7\u540D\u6216\u805A\u7C7B ID" },
+      target: { type: "string", maxLength: 600, description: "context / clusters / flows\uFF1A\u8DEF\u5F84#\u7B26\u53F7\u3001\u6587\u4EF6\u8DEF\u5F84\u3001\u7B26\u53F7\u540D\u6216\u805A\u7C7B ID\uFF1Bhealth\uFF1Aquality / dependencies / iteration / difficulty" },
       from: { type: "string", maxLength: 600, description: "trace\uFF1A\u8D77\u70B9" },
       to: { type: "string", maxLength: 600, description: "trace\uFF1A\u7EC8\u70B9" },
       targets: { type: "array", maxItems: 30, items: { type: "string", maxLength: 600 }, description: "impact\uFF1A\u8981\u6539\u52A8\u7684\u76EE\u6807" },
@@ -6457,6 +7238,14 @@ async function apply(ctx) {
       }
       if (action === "routes") return json({ freshness, ...routeList(index, { query: args2.query === void 0 ? void 0 : text(args2.query, 200), limit: limit ?? 100 }) });
       if (action === "cycles") return json({ freshness, ...cycleList(index, limit ?? 20) });
+      if (action === "health") {
+        const report = await assess(index, execution.signal);
+        if (args2.target === void 0) return json({ freshness, commit: report.commit, ...healthBrief(report) });
+        const section = text(args2.target, 32);
+        if (!healthSections.includes(section)) return json({ freshness, issue: "health \u7684 target \u53EA\u80FD\u662F quality\u3001dependencies\u3001iteration\u3001difficulty\uFF0C\u6216\u4E0D\u5E26 target \u770B\u603B\u89C8" });
+        return json({ freshness, commit: report.commit, section, ...report[section] });
+      }
+      if (action === "export") return json({ freshness, ok: true, ...await exportArchive(index, execution.signal), instructions: "\u6863\u6848\u5DF2\u5199\u5165\u9879\u76EE\u3002\u544A\u8BC9\u7528\u6237\u4E24\u4E2A\u6587\u4EF6\u7684\u8DEF\u5F84\u4E0E\u6700\u503C\u5F97\u5148\u770B\u7684\u51E0\u6761\u7ED3\u8BBA\uFF1B\u4E0D\u8981\u628A\u6574\u4EFD\u6863\u6848\u8D34\u56DE\u5BF9\u8BDD\uFF0C\u4E5F\u4E0D\u8981\u624B\u6539\u8FD9\u4E24\u4E2A\u6587\u4EF6\u3002" });
       if (action === "impact") {
         if (!Array.isArray(args2.targets) || !args2.targets.length) throw new Error("impact \u9700\u8981 targets");
         const found = args2.targets.map((item) => locate2(index, text(item, 600)));
@@ -6471,8 +7260,8 @@ async function apply(ctx) {
     },
     presentCall(input) {
       const args2 = object(input);
-      const labels = { overview: "\u9879\u76EE\u6982\u89C8", search: "\u641C\u7D22\u7B26\u53F7", context: "\u67E5\u770B\u4E0A\u4E0B\u6587", impact: "\u5F71\u54CD\u5206\u6790", changes: "\u5206\u6790\u5F53\u524D\u6539\u52A8", clusters: "\u529F\u80FD\u805A\u7C7B", flows: "\u6267\u884C\u6D41\u7A0B", trace: "\u8DEF\u5F84\u8FFD\u8E2A", routes: "\u8DEF\u7531\u8868", cycles: "\u5FAA\u73AF\u4F9D\u8D56", rebuild: "\u91CD\u5EFA\u56FE\u8C31" };
-      return { card: "generic", title: "\u7814\u53D1\u5DE5\u4F5C\u5BA4 \xB7 " + (labels[String(args2.action)] ?? "\u67E5\u8BE2\u56FE\u8C31"), kind: "read", rawInput: input };
+      const labels = { overview: "\u9879\u76EE\u6982\u89C8", search: "\u641C\u7D22\u7B26\u53F7", context: "\u67E5\u770B\u4E0A\u4E0B\u6587", impact: "\u5F71\u54CD\u5206\u6790", changes: "\u5206\u6790\u5F53\u524D\u6539\u52A8", clusters: "\u529F\u80FD\u805A\u7C7B", flows: "\u6267\u884C\u6D41\u7A0B", trace: "\u8DEF\u5F84\u8FFD\u8E2A", routes: "\u8DEF\u7531\u8868", cycles: "\u5FAA\u73AF\u4F9D\u8D56", health: "\u9879\u76EE\u4F53\u68C0", export: "\u5BFC\u51FA\u9879\u76EE\u6863\u6848", rebuild: "\u91CD\u5EFA\u56FE\u8C31" };
+      return { card: "generic", title: "\u7814\u53D1\u5DE5\u4F5C\u5BA4 \xB7 " + (labels[String(args2.action)] ?? "\u67E5\u8BE2\u56FE\u8C31"), kind: args2.action === "export" ? "edit" : "read", rawInput: input };
     }
   }), "\u7814\u53D1\u5DE5\u4F5C\u5BA4\uFF1A\u56FE\u8C31\u67E5\u8BE2\u5DE5\u5177");
   ctx.effect(() => ctx.tools.register({
@@ -6482,19 +7271,19 @@ async function apply(ctx) {
     output: { schema: { type: "string" }, render: (_args, value) => [{ type: "text", text: String(value) }] },
     async execute(input, execution) {
       const args2 = object(input), root = workspace(execution);
-      const onDisk = (path2) => exists2(join7(root, path2));
+      const onDisk = (path2) => exists2(join8(root, path2));
       if (args2.stage === "submit") {
         const plan = parsePlan(args2.plan);
         const { index } = await ensure(root, execution.signal);
         const validation = await validatePlan(index, plan, onDisk);
         if (validation.issues.length) return json({ ok: false, issues: validation.issues, warnings: validation.warnings, instructions: "\u65B9\u6848\u6CA1\u6709\u4FDD\u5B58\u3002\u9010\u6761\u6539\u6B63 issues \u540E\u91CD\u65B0\u63D0\u4EA4\u5B8C\u6574\u7684 plan\uFF1B\u76EE\u6807\u627E\u4E0D\u5230\u65F6\u5148\u7528 eng_graph \u7684 search \u6216 context \u786E\u8BA4\uFF0C\u4E0D\u8981\u6539\u6210\u4E00\u4E2A\u731C\u6D4B\u7684\u540D\u5B57\u3002" });
         const createdAt = (/* @__PURE__ */ new Date()).toISOString(), baseCommit = await headCommit(root, execution.signal);
-        const directory = join7(root, "docs/iterations", plan.slug);
+        const directory = join8(root, "docs/iterations", plan.slug);
         const saved = { schemaVersion: 1, createdAt, baseCommit, plan, currentSignatures: Object.fromEntries(validation.resolved.flatMap((item) => item.node?.signature ? [[item.change.target, item.node.signature]] : [])) };
         execution.signal.throwIfAborted();
-        await mkdir2(directory, { recursive: true });
-        await writeFile2(join7(directory, "iteration.md"), renderPlan(plan, validation.resolved, { commit: index.graph.commit, createdAt }));
-        await writeFile2(join7(directory, "iteration.json"), JSON.stringify(saved, null, 2) + "\n");
+        await mkdir4(directory, { recursive: true });
+        await writeFile4(join8(directory, "iteration.md"), renderPlan(plan, validation.resolved, { commit: index.graph.commit, createdAt }));
+        await writeFile4(join8(directory, "iteration.json"), JSON.stringify(saved, null, 2) + "\n");
         return json({
           ok: true,
           document: "docs/iterations/" + plan.slug + "/iteration.md",
@@ -6506,21 +7295,8 @@ async function apply(ctx) {
         });
       }
       if (args2.stage === "check") {
-        const slug = text(args2.slug, 64);
-        if (!/^[a-z0-9][a-z0-9-]{1,63}$/.test(slug)) throw new Error("slug \u683C\u5F0F\u65E0\u6548");
-        const directory = join7(root, "docs/iterations", slug);
-        let saved;
-        try {
-          saved = JSON.parse(await readFile6(join7(directory, "iteration.json"), "utf8"));
-        } catch {
-          throw new Error("\u627E\u4E0D\u5230 docs/iterations/" + slug + "/iteration.json\uFF0C\u8BF7\u5148\u7528 stage=submit \u63D0\u4EA4\u65B9\u6848");
-        }
-        if (saved.schemaVersion !== 1) throw new Error("\u65B9\u6848\u6587\u4EF6\u7248\u672C\u4E0D\u53D7\u652F\u6301");
         const { index } = await ensure(root, execution.signal);
-        const changes = saved.baseCommit ? await workingChanges(root, saved.baseCommit, execution.signal) : void 0;
-        const report = await checkPlan(index, saved, changes, onDisk);
-        await writeFile2(join7(directory, "check-report.json"), JSON.stringify({ checkedAt: (/* @__PURE__ */ new Date()).toISOString(), commit: index.graph.commit, ...report }, null, 2) + "\n");
-        return json({ ...report, report: "docs/iterations/" + slug + "/check-report.json" });
+        return json({ ...await verifyPlan(index, text(args2.slug, 64), execution.signal), report: "docs/iterations/" + text(args2.slug, 64) + "/check-report.json" });
       }
       throw new Error("\u672A\u77E5\u65B9\u6848\u9636\u6BB5");
     },
@@ -6529,56 +7305,11 @@ async function apply(ctx) {
       return { card: "generic", title: "\u7814\u53D1\u5DE5\u4F5C\u5BA4 \xB7 " + (args2.stage === "check" ? "\u6838\u5BF9\u65B9\u6848\u843D\u5730" : "\u63D0\u4EA4\u8FED\u4EE3\u65B9\u6848"), kind: args2.stage === "check" ? "read" : "edit", rawInput: input };
     }
   }), "\u7814\u53D1\u5DE5\u4F5C\u5BA4\uFF1A\u8FED\u4EE3\u65B9\u6848\u5DE5\u5177");
-  const snapshot = async () => ({ graphs: await engine.list(), skills: skills.map((skill) => ({ name: skill.name, description: skill.description })), tasks: define_STUDIO_PROJECT_default.tasks ?? [], instructions: workspaceInstructions, principles: principlesSummary, settings });
-  const dispatch = async (input) => {
-    const action = text(input.action, 32);
-    if (action === "snapshot") return snapshot();
-    if (action === "configure") {
-      settings = { schemaVersion: 1, principles: object(input.settings).principles !== false };
-      await mkdir2(home, { recursive: true });
-      await writeFile2(settingsPath, JSON.stringify(settings, null, 2) + "\n");
-      registerPrompt();
-      return snapshot();
-    }
-    if (action === "skill") {
-      const skill = skills.find((item) => item.name === text(input.name, 64));
-      if (!skill) throw new Error("\u6CA1\u6709\u8FD9\u4E2A\u6280\u80FD");
-      return { name: skill.name, description: skill.description, content: skill.content };
-    }
-    const root = text(input.root, 2048);
-    if (!isAbsolute3(root)) throw new Error("\u8BF7\u586B\u5199\u9879\u76EE\u7684\u7EDD\u5BF9\u8DEF\u5F84");
-    if (action === "remove") {
-      await engine.remove(root);
-      return snapshot();
-    }
-    if (action !== "build" && !(await engine.list()).some((meta) => meta.root === root)) throw new Error("\u8FD9\u4E2A\u9879\u76EE\u8FD8\u6CA1\u6709\u5EFA\u8FC7\u56FE\u8C31");
-    const { index, freshness } = await engine.ensure(root, { signal: lifetime.signal, force: action === "rebuild" });
-    if (action === "build" || action === "rebuild" || action === "overview") return { freshness, overview: overview(index) };
-    if (action === "search") return { freshness, ...search(index, text(input.query, 200), 30) };
-    if (action === "views") return { clusters: clusterList(index, 40), flows: flowList(index, { limit: 400 }), routes: routeList(index, { limit: 1e3 }), cycles: cycleList(index, 50) };
-    if (action === "cluster") {
-      const detail = clusterDetail(index, text(input.id, 16));
-      if (!detail) throw new Error("\u6CA1\u6709\u8FD9\u4E2A\u805A\u7C7B");
-      return detail;
-    }
-    if (action === "flow") {
-      const detail = flowDetail(index, text(input.id, 2048));
-      if (!detail) throw new Error("\u6CA1\u6709\u8FD9\u6761\u6D41\u7A0B");
-      return detail;
-    }
-    if (action === "trace") {
-      const from = locate2(index, text(input.from, 600)), to = locate2(index, text(input.to, 600));
-      if ("problem" in from) return from.problem;
-      if ("problem" in to) return to.problem;
-      return traceResult(index, from.node, to.node);
-    }
-    if (action === "context" || action === "impact") {
-      const found = locate2(index, text(input.target, 600));
-      if ("problem" in found) return found.problem;
-      return action === "context" ? context(index, found.node, 40) : impact(index, [found.node], { limit: 60 });
-    }
-    throw new Error("\u672A\u77E5\u5DE5\u4F5C\u5BA4\u64CD\u4F5C");
-  };
+  const snapshot = async () => ({ graphs: await engine.list(), skills: skills.map((skill) => ({ name: skill.name, description: skill.description })), tasks: define_STUDIO_PROJECT_default.tasks ?? [], instructions: workspaceInstructions, principles: principlesSummary, settings: settingsStore.value });
+  const dispatch = createPageDispatch({ engine, signal: lifetime.signal, skills, snapshot, assess, exportArchive, locate: locate2, async configure(input) {
+    await settingsStore.save(input);
+    registerPrompt();
+  } });
   const send = (res, status, value) => {
     res.writeHead(status, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff" });
     res.end(JSON.stringify(value));

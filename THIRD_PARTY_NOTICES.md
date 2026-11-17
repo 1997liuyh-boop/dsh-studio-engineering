@@ -53,3 +53,4 @@ SOFTWARE.
 | [abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) | PolyForm Noncommercial 1.0.0 | 按距离分级的影响面、每次查询返回新鲜度、把 Git 改动映射到符号 |
 | [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | MIT | 用 WASM 语法解析避免原生编译、按内容指纹增量更新 |
 | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | Apache-2.0 | 区分「确定」与「推断」的关系置信度 |
+| [sdyckjq-lab/llm-wiki-skill](https://github.com/sdyckjq-lab/llm-wiki-skill) | MIT | 知识图谱画布的表达方式：带类型色签的节点、聚类晕染色块、用连线虚实表示置信度、小地图与图例 |

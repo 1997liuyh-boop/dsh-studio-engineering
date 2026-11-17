@@ -19,7 +19,7 @@ export const taskMethods: Record<TaskKind, string[]> = {
 export const principlesSummary = '写、改、评审代码时遵守四条准则：一、先想清楚再动手，有不确定的前提就说出来，不悄悄替用户做选择；二、简单优先，只写解决问题所需的最少代码，不做猜测性设计；三、只改必须改的，不顺手重构或调整无关代码，只清理自己造成的遗留；四、以可验证的目标驱动，先定好怎么验证，实际运行并看到结果之后才说完成。细则见技能 eng-coding-principles。'
 
 /** 宿主系统提示词与工作室页面共用的调用指引。 */
-export const workspaceInstructions = '用户通过 @工作室:engineering 或 @研发工作室 指定研发工作室。建立代码知识图谱、根据需求文档做迭代方案、分析改动影响、按方案实现、评审改动时，先调用 eng_workspace，task 分别为 graph、analyze、impact、implement、review，request 保留用户原文。该工具返回当前执行会话的真实工作区、图谱状态和这类任务的内置流程，按返回内容在当前会话继续，不需要打开工作室面板，也不需要用户另选目录。查代码结构用 eng_graph：search 按名字、路径或用途找符号，context 看一个符号的签名、成员与上下游，impact 看改动它会波及哪里，changes 把 Git 改动对应到符号，overview 看项目概览；全局视图：clusters 看按调用关系划分的功能聚类，flows 看从页面与路由出发的执行流程，trace 查 A 怎样调用到 B，routes 看页面与接口路由，cycles 看循环导入。图谱在每次调用时自动同步最新代码，不需要手动重建。图谱告诉你代码在哪里，动手前仍要打开源码读一遍。迭代方案只通过 eng_plan 提交（stage=submit）与实施后核对（stage=check），不手写 docs/iterations 下的文档。图谱目前覆盖 TypeScript、JavaScript 与 Vue；其他语言的代码用文本搜索定位，并在结论里说明这部分没有经过图谱核对。没有工作区时请用户先在 dsh 里打开项目会话。'
+export const workspaceInstructions = '用户通过 @工作室:engineering 或 @研发工作室 指定研发工作室。建立代码知识图谱、根据需求文档做迭代方案、分析改动影响、按方案实现、评审改动时，先调用 eng_workspace，task 分别为 graph、analyze、impact、implement、review，request 保留用户原文。该工具返回当前执行会话的真实工作区、图谱状态和这类任务的内置流程，按返回内容在当前会话继续，不需要打开工作室面板，也不需要用户另选目录。查代码结构用 eng_graph：search 按名字、路径或用途找符号，context 看一个符号的签名、成员与上下游，impact 看改动它会波及哪里，changes 把 Git 改动对应到符号，overview 看项目概览；全局视图：clusters 看按调用关系划分的功能聚类，flows 看从页面与路由出发的执行流程，trace 查 A 怎样调用到 B，routes 看页面与接口路由，cycles 看循环导入；评估项目时用 health 看体检结果（质量分与各项检查、依赖声明与实际导入的对照、最近的迭代节奏与改动热点、每个功能聚类的优化难度与迭代难度），用户想把结论留给以后接手的人或其他模型时用 export 写成项目档案 docs/engineering/project-map.md。图谱在每次调用时自动同步最新代码，不需要手动重建。图谱告诉你代码在哪里，动手前仍要打开源码读一遍。迭代方案只通过 eng_plan 提交（stage=submit）与实施后核对（stage=check），不手写 docs/iterations 下的文档。图谱目前覆盖 TypeScript、JavaScript 与 Vue；其他语言的代码用文本搜索定位，并在结论里说明这部分没有经过图谱核对。没有工作区时请用户先在 dsh 里打开项目会话。'
 
 const planFields = [
   '【plan 字段】',
@@ -47,7 +47,7 @@ export function taskPrompt(kind: TaskKind, project: Project, request: string): s
       '【本次任务】为当前项目建立或刷新代码知识图谱，并向用户说明图谱里有什么。本次不修改任何项目文件。',
       '下方 overview 是刚生成的项目概览（数据）。向用户汇报：文件数、符号数与关系数；功能聚类（overview.clusters：按调用关系划分的模块，说明最大的几个各负责什么、彼此怎么依赖）；被使用最多的几个符号；路由与执行流程的数量（overview.globalViews）；循环导入有几组（有就点出最大的一组，用 eng_graph 的 cycles 查具体路径）；有多少文件被跳过（构建产物、压缩脚本、超大文件，见 stats.skipped），有多少文件含解析器不认识的语法、只解析了一部分（stats.errors）。',
       '说明图谱的边界：只覆盖 TypeScript、JavaScript 与 Vue；标为 inferred 的关系来自自动导入等约定推断；动态调用、字符串拼出来的路径、框架按约定加载的入口在图里看不到。',
-      '最后告诉用户接下来可以做什么：@研发工作室:分析需求文档、@研发工作室:影响分析，或直接问「某个函数被哪些地方用到」「某个页面的调用链」「A 怎样调用到 B」；工作室页面的「全局视图」可以看架构图、执行流程、路由与循环依赖。不要把整份概览数据贴回对话。',
+      '最后告诉用户接下来可以做什么：@研发工作室:分析需求文档、@研发工作室:影响分析，或直接问「某个函数被哪些地方用到」「某个页面的调用链」「A 怎样调用到 B」；想了解项目质量、依赖和改动难度可以说「给项目做个体检」；工作室页面的「知识图谱」可以直接看图，「全局视图」里有体检、依赖、迭代情况、改动难度、执行流程与路由。不要把整份概览数据贴回对话。',
     ],
     analyze: [
       '【本次任务】根据用户给出的需求产出迭代方案：有哪些功能点、怎么迭代、影响范围、参数与方法设计。本次只读代码、写方案文档，不修改业务代码。',

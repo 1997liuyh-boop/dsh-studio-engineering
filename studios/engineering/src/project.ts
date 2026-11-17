@@ -48,3 +48,37 @@ export async function inspectProject(input: string): Promise<Project> {
   try { iterations = (await readdir(join(root, 'docs/iterations'), { withFileTypes: true })).filter(entry => entry.isDirectory()).map(entry => entry.name).sort() } catch { /* 还没有迭代方案 */ }
   return { root, name: typeof pkg.name === 'string' ? pkg.name : root.split(/[\\/]/).pop() ?? root, frameworks: frameworkPackages.filter(([name]) => name in dependencies).map(([, label]) => label), packageManager, scripts, conventions, iterations }
 }
+
+/** 只留「包名 → 版本字符串」的条目，忽略格式不对的内容。 */
+const versions = (value: unknown): Record<string, string> => value && typeof value === 'object' && !Array.isArray(value)
+  ? Object.fromEntries(Object.entries(value).filter((entry): entry is [string, string] => typeof entry[1] === 'string')) : {}
+
+/**
+ * 读取根目录 package.json 声明的依赖；没有或损坏时返回 undefined。
+ * @param root 项目根目录。
+ */
+export async function readManifest(root: string): Promise<{ dependencies: Record<string, string>; devDependencies: Record<string, string>; peerDependencies: Record<string, string> } | undefined> {
+  try {
+    const pkg = object(JSON.parse(await readFile(join(root, 'package.json'), 'utf8')))
+    return { dependencies: versions(pkg.dependencies), devDependencies: versions(pkg.devDependencies), peerDependencies: versions(pkg.peerDependencies) }
+  } catch { return undefined }
+}
+
+/**
+ * 读取 docs/iterations 下已有的迭代方案摘要；读不了的目录跳过。
+ * @param root 项目根目录。
+ */
+export async function readPlans(root: string): Promise<{ slug: string; title: string; createdAt: string; features: number; changes: number; steps: number; checked: boolean }[]> {
+  let names: string[]
+  try { names = (await readdir(join(root, 'docs/iterations'), { withFileTypes: true })).filter(entry => entry.isDirectory()).map(entry => entry.name).sort() } catch { return [] }
+  const plans = []
+  for (const slug of names.slice(-50)) {
+    try {
+      const saved = object(JSON.parse(await readFile(join(root, 'docs/iterations', slug, 'iteration.json'), 'utf8')))
+      const plan = object(saved.plan)
+      const count = (value: unknown) => Array.isArray(value) ? value.length : 0
+      plans.push({ slug, title: typeof plan.title === 'string' ? plan.title : slug, createdAt: typeof saved.createdAt === 'string' ? saved.createdAt : '', features: count(plan.features), changes: count(plan.changes), steps: count(plan.steps), checked: await exists(join(root, 'docs/iterations', slug, 'check-report.json')) })
+    } catch { /* 不是工作室生成的方案目录 */ }
+  }
+  return plans.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+}

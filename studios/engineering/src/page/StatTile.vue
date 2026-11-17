@@ -12,9 +12,9 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="rounded-lg border border-line bg-panel px-3 py-2.5">
+  <div class="stat-tile">
     <div class="text-xs text-muted">{{ label }}</div>
-    <div class="mt-1 text-xl font-semibold tabular-nums text-ink">{{ value }}</div>
-    <div v-if="hint" class="mt-0.5 text-xs text-muted">{{ hint }}</div>
+    <div class="mt-2 break-words text-xl font-medium tabular-nums text-ink">{{ value }}</div>
+    <div v-if="hint" class="mt-1 break-words text-xs leading-5 text-muted">{{ hint }}</div>
   </div>
 </template>
